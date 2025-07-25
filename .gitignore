@@ -1,4 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Addon specific beause I'm dense
 /addons/
+/images/
