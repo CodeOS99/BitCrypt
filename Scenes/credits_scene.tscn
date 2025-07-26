@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c43yxm81wfpf0"]
+[gd_scene load_steps=8 format=3 uid="uid://c43yxm81wfpf0"]
 
 [ext_resource type="Script" path="res://Scenes/credits_keyboard_btn.gd" id="1_6jpop"]
 [ext_resource type="PackedScene" uid="uid://bwtvmj4k6uvwj" path="res://Scenes/keyboard_btn.tscn" id="2_tf21t"]
-[ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/option_beep.wav" id="3_kimbb"]
-[ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/select_button.wav" id="4_mm56h"]
+[ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/sfx/option_beep.wav" id="3_kimbb"]
+[ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/sfx/select_button.wav" id="4_mm56h"]
+[ext_resource type="AudioStream" uid="uid://df5oumo1tc36b" path="res://Assets/Audio/music/Curiosity.mp3" id="5_jvy2f"]
+[ext_resource type="PackedScene" uid="uid://blsb27aml1tjv" path="res://Scenes/crt_shader_rect.tscn" id="6_wgiwo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nrw8"]
 bg_color = Color(0.188235, 0.384314, 0.188235, 1)
@@ -16,8 +18,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -25,8 +28,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3nrw8")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
+[node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 8.0
@@ -38,8 +40,7 @@ theme_override_colors/font_shadow_color = Color(0.607843, 0.737255, 0.0588235, 1
 theme_override_font_sizes/font_size = 50
 text = "ALL OF THESE ARE AMAZING!"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -53,31 +54,37 @@ grow_vertical = 0
 theme_override_constants/separation = 50
 script = ExtResource("1_6jpop")
 
-[node name="artButton" parent="VBoxContainer" instance=ExtResource("2_tf21t")]
+[node name="artButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_tf21t")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 49
 text = "LITERALLY ALL OF THE ART - 
 Toadzillart"
 
-[node name="musicButton" parent="VBoxContainer" instance=ExtResource("2_tf21t")]
+[node name="musicButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_tf21t")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 43
 text = "ALL OF THE BACKGROUND MUSIC -
-??? {IF U SEE THIS, CALL!}"
+TipTopTomCat"
 
-[node name="meButton" parent="VBoxContainer" instance=ExtResource("2_tf21t")]
+[node name="meButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_tf21t")]
 layout_mode = 2
 text = "EVERYTHING ELSE-
 ME!!"
 
-[node name="backButton" parent="VBoxContainer" instance=ExtResource("2_tf21t")]
+[node name="backButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_tf21t")]
 layout_mode = 2
 text = "- back"
 
-[node name="beepSound" type="AudioStreamPlayer" parent="."]
+[node name="beepSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("3_kimbb")
 
-[node name="selectSound" type="AudioStreamPlayer" parent="."]
+[node name="selectSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("4_mm56h")
 
-[connection signal="pressed" from="VBoxContainer/backButton" to="VBoxContainer" method="_on_back_button_pressed"]
+[node name="bgMusic" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("5_jvy2f")
+autoplay = true
+
+[node name="ColorRect" parent="CanvasLayer" instance=ExtResource("6_wgiwo")]
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/backButton" to="CanvasLayer/VBoxContainer" method="_on_back_button_pressed"]

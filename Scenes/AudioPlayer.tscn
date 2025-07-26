@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://1vb72tt5chin"]
+
+[ext_resource type="AudioStream" uid="uid://df5oumo1tc36b" path="res://Assets/Audio/music/Curiosity.mp3" id="1_gmo5x"]
+[ext_resource type="Script" path="res://Scripts/audio_player.gd" id="2_68ebu"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_gmo5x")
+autoplay = true
+script = ExtResource("2_68ebu")

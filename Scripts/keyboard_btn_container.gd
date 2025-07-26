@@ -7,6 +7,7 @@ var number_of_options: int = 0
 @onready var selectSoundPlayer = $"../selectSound"
 
 func _ready() -> void:
+	AudioPlayer.play_bg_music()
 	number_of_options = get_child_count()
 	get_child(curr_focus_idx).grab_focus()
 
@@ -23,7 +24,7 @@ func _process(delta: float) -> void:
 func _on_playbtn_pressed() -> void:
 	selectSoundPlayer.play()
 	await selectSoundPlayer.finished
-	get_tree().change_scene_to_file("res://Scenes/main_game.tscn")
+	get_tree().change_scene_to_file("res://Scenes/rooms/starting_room.tscn")
 
 func _on_credits_btn_pressed() -> void:
 	selectSoundPlayer.play()

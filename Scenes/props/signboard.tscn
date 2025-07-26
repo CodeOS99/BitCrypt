@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bekvs4es0pyxr"]
+
+[ext_resource type="Script" path="res://Scripts/signboard.gd" id="1_3j12r"]
+[ext_resource type="Texture2D" uid="uid://dt71wluio1kip" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/props.png" id="1_wtfwp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s3lw"]
+atlas = ExtResource("1_wtfwp")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ghqe8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s3lw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rbxnm"]
+radius = 15.0
+
+[node name="signboard" type="Node2D"]
+script = ExtResource("1_3j12r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ghqe8")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rbxnm")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -37.0
+offset_top = 8.0
+offset_right = 59.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 8
+text = "e to interact"

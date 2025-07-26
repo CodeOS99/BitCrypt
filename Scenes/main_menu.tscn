@@ -1,35 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bh3x2ky7h7dra"]
+[gd_scene load_steps=7 format=3 uid="uid://bh3x2ky7h7dra"]
 
-[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_2hmou"]
-[ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="2_5ub1a"]
 [ext_resource type="Script" path="res://Scripts/keyboard_btn_container.gd" id="2_g6grl"]
 [ext_resource type="PackedScene" uid="uid://bwtvmj4k6uvwj" path="res://Scenes/keyboard_btn.tscn" id="3_13wov"]
-[ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/option_beep.wav" id="4_jlsmq"]
-[ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/select_button.wav" id="5_rluep"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4f3u"]
-shader = ExtResource("2_5ub1a")
-shader_parameter/overlay = false
-shader_parameter/scanlines_opacity = 0.4
-shader_parameter/scanlines_width = 0.25
-shader_parameter/grille_opacity = 0.3
-shader_parameter/resolution = Vector2(640, 480)
-shader_parameter/pixelate = true
-shader_parameter/roll = true
-shader_parameter/roll_speed = 8.0
-shader_parameter/roll_size = 15.0
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.4
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.03
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = true
-shader_parameter/warp_amount = 1.0
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
+[ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/sfx/option_beep.wav" id="4_jlsmq"]
+[ext_resource type="PackedScene" uid="uid://blsb27aml1tjv" path="res://Scenes/crt_shader_rect.tscn" id="5_n0q81"]
+[ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/sfx/select_button.wav" id="5_rluep"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ku72g"]
 bg_color = Color(0.188235, 0.384314, 0.188235, 1)
@@ -41,19 +16,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_2hmou")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-material = SubResource("ShaderMaterial_i4f3u")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Panel" type="Panel" parent="ColorRect"]
-layout_mode = 1
+[node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -61,8 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ku72g")
 
-[node name="Label" type="Label" parent="ColorRect"]
-layout_mode = 1
+[node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -75,8 +40,7 @@ theme_override_colors/font_shadow_color = Color(0.607843, 0.737255, 0.0588235, 1
 theme_override_font_sizes/font_size = 100
 text = "BITCRYPT"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
-layout_mode = 1
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -90,24 +54,26 @@ theme_override_constants/separation = 50
 alignment = 1
 script = ExtResource("2_g6grl")
 
-[node name="playbtn" parent="ColorRect/VBoxContainer" instance=ExtResource("3_13wov")]
+[node name="playbtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("3_13wov")]
 layout_mode = 2
 text = "PLAY"
 
-[node name="creditsBtn" parent="ColorRect/VBoxContainer" instance=ExtResource("3_13wov")]
+[node name="creditsBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("3_13wov")]
 layout_mode = 2
 text = "CREDITS"
 
-[node name="quitBtn" parent="ColorRect/VBoxContainer" instance=ExtResource("3_13wov")]
+[node name="quitBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("3_13wov")]
 layout_mode = 2
 text = "QUIT"
 
-[node name="beepSound" type="AudioStreamPlayer" parent="ColorRect"]
+[node name="beepSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("4_jlsmq")
 
-[node name="selectSound" type="AudioStreamPlayer" parent="ColorRect"]
+[node name="selectSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("5_rluep")
 
-[connection signal="pressed" from="ColorRect/VBoxContainer/playbtn" to="ColorRect/VBoxContainer" method="_on_playbtn_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/creditsBtn" to="ColorRect/VBoxContainer" method="_on_credits_btn_pressed"]
-[connection signal="pressed" from="ColorRect/VBoxContainer/quitBtn" to="ColorRect/VBoxContainer" method="_on_quit_btn_pressed"]
+[node name="ColorRect" parent="CanvasLayer" instance=ExtResource("5_n0q81")]
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/playbtn" to="CanvasLayer/VBoxContainer" method="_on_playbtn_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/creditsBtn" to="CanvasLayer/VBoxContainer" method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/quitBtn" to="CanvasLayer/VBoxContainer" method="_on_quit_btn_pressed"]
