@@ -592,7 +592,7 @@ position = Vector2(288, 288)
 
 [node name="signboard" parent="." instance=ExtResource("5_efyh1")]
 position = Vector2(168, 112)
-text_on_label = "ok you can go through the door now. its implemented!"
+text_on_label = "Don't go through the doors pls I haven't implemented that yet. And now I will proceed to write a bunch of garbage in order to test the functionality of the signbaord."
 
 [node name="player" parent="." instance=ExtResource("5_0db63")]
 position = Vector2(146, 120)

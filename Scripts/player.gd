@@ -7,7 +7,10 @@ var current_speed: float = WALK_SPEED
 var can_move: bool = true
 
 @onready var child_parent: Node2D = $childParent
-@onready var animated_sprite: AnimatedSprite2D = $childParent/AnimatedSprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+func _ready() -> void:
+	Globals.player = self
 
 func _physics_process(delta: float) -> void:
 	handleMovement(delta)
@@ -30,10 +33,10 @@ func handleMovement(delta: float):
 		elif input_vector.x < 0:
 			child_parent.scale.x = -abs(child_parent.scale.x)
 		velocity = current_speed * input_vector
-		animated_sprite.play("walk")
+		animation_player.play("walk")
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, WALK_SPEED)
-		if animated_sprite.animation != "idle":
-			animated_sprite.play("idle")
+		if animation_player.assigned_animation != "idle":
+			animation_player.play("idle")
 
 	move_and_slide()
