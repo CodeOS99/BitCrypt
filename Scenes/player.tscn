@@ -351,6 +351,7 @@ shader_parameter/vignette_intensity = 0.0
 shader_parameter/vignette_opacity = 1.0
 
 [node name="player" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_4nc5l")
 
 [node name="childParent" type="Node2D" parent="."]
@@ -381,6 +382,7 @@ editor_draw_limits = true
 layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_ngqfk")
 anchors_preset = 15

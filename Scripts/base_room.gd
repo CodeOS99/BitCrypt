@@ -5,8 +5,17 @@ extends Node2D
 @onready var props: Node2D = $props
 @onready var doors: Node2D = $props/doors
 @onready var player: CharacterBody2D = $player
+@onready var wall_tilemap: TileMapLayer = $walls
 
 var openings: Array[Opening]
+
+enum room_type {
+	COMBAT,
+	TRAP,
+	PUZZLE
+}
+
+@export var curr_room_type: room_type
 
 func _ready() -> void:
 	if openings_cotainer_node == null:
@@ -20,7 +29,14 @@ func _ready() -> void:
 	
 	for door in doors.get_children():
 		door.entered.connect(door_entered)
+		if curr_room_type == room_type.COMBAT:
+			door.close()
+
+func make_random_openings(entered_opening: Opening):
+	for opening in openings:
+		if opening != entered_opening:
+			if randi() % 2 == 0:
+				opening.door.become_tile()
 
 func door_entered():
-	print("Hello")
 	self.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dhhe1rtxt2u61"]
+[gd_scene load_steps=20 format=4 uid="uid://dhhe1rtxt2u61"]
 
 [ext_resource type="Script" path="res://Scripts/base_room.gd" id="1_ebatj"]
 [ext_resource type="Texture2D" uid="uid://ddceastutov1i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/surground.png" id="1_fh6w6"]
@@ -8,8 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dv5a743p5l2sn" path="res://Scenes/player.tscn" id="5_0db63"]
 [ext_resource type="PackedScene" uid="uid://bekvs4es0pyxr" path="res://Scenes/props/signboard.tscn" id="5_efyh1"]
 [ext_resource type="PackedScene" uid="uid://c7h0olhpbbvir" path="res://Scenes/props/door_left.tscn" id="7_h1j03"]
+[ext_resource type="PackedScene" uid="uid://c0xli34rcyohp" path="res://Scenes/props/door_down.tscn" id="9_2eqmf"]
+[ext_resource type="PackedScene" uid="uid://vxbdqvr60sns" path="res://Scenes/props/door_right.tscn" id="10_jraym"]
+[ext_resource type="PackedScene" uid="uid://b2ne1yhmhltrn" path="res://Scenes/props/door_up.tscn" id="11_1xcxn"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_apui0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tu8s7"]
 texture = ExtResource("1_fh6w6")
 0:0/0 = 0
 1:0/0 = 0
@@ -125,9 +128,9 @@ texture = ExtResource("1_fh6w6")
 3:13/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_jw72c"]
-sources/0 = SubResource("TileSetAtlasSource_apui0")
+sources/0 = SubResource("TileSetAtlasSource_tu8s7")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ey688"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hcqej"]
 texture = ExtResource("2_i3n4o")
 0:0/0 = 0
 1:0/0 = 0
@@ -326,9 +329,9 @@ texture = ExtResource("2_i3n4o")
 11:15/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_qr3ra"]
-sources/0 = SubResource("TileSetAtlasSource_ey688")
+sources/0 = SubResource("TileSetAtlasSource_hcqej")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubjd5"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qvidq"]
 texture = ExtResource("3_i1cie")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -512,9 +515,9 @@ texture = ExtResource("3_i1cie")
 
 [sub_resource type="TileSet" id="TileSet_wega0"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_ubjd5")
+sources/0 = SubResource("TileSetAtlasSource_qvidq")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tscyv"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukgj6"]
 texture = ExtResource("4_s0k3m")
 0:0/0 = 0
 1:0/0 = 0
@@ -567,10 +570,11 @@ texture = ExtResource("4_s0k3m")
 
 [sub_resource type="TileSet" id="TileSet_eyajf"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_tscyv")
+sources/0 = SubResource("TileSetAtlasSource_ukgj6")
 
 [node name="starting_room" type="Node2D"]
 script = ExtResource("1_ebatj")
+curr_room_type = 1
 
 [node name="surground" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_jw72c")
@@ -597,11 +601,20 @@ text_on_label = "ok you can go through the door now. its implemented!"
 [node name="player" parent="." instance=ExtResource("5_0db63")]
 position = Vector2(146, 120)
 
-[node name="all_openings" type="Node2D" parent="."]
-
 [node name="props" type="Node2D" parent="."]
 
 [node name="doors" type="Node2D" parent="props"]
 
 [node name="door_left" parent="props/doors" instance=ExtResource("7_h1j03")]
 position = Vector2(8, 120)
+
+[node name="door_down" parent="props/doors" instance=ExtResource("9_2eqmf")]
+position = Vector2(136, 280)
+
+[node name="door_right" parent="props/doors" instance=ExtResource("10_jraym")]
+position = Vector2(280, 136)
+
+[node name="door_up" parent="props/doors" instance=ExtResource("11_1xcxn")]
+position = Vector2(152, 8)
+
+[node name="all_openings" type="Node2D" parent="."]

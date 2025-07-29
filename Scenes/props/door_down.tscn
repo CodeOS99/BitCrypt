@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://c0xli34rcyohp"]
+
+[ext_resource type="Script" path="res://Scripts/door.gd" id="1_6xdpc"]
+[ext_resource type="Texture2D" uid="uid://bgydfbco1vic7" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/walls.png" id="1_q8m8w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55aus"]
+atlas = ExtResource("1_q8m8w")
+region = Rect2(192, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ab6k6"]
+atlas = ExtResource("1_q8m8w")
+region = Rect2(192, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad2j3"]
+atlas = ExtResource("1_q8m8w")
+region = Rect2(112, 48, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t3wsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55aus")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ab6k6")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad2j3")
+}],
+"loop": true,
+"name": &"tile",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ghet6"]
+size = Vector2(8, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dv35"]
+size = Vector2(13, 10)
+
+[node name="door_down" type="Node2D"]
+script = ExtResource("1_6xdpc")
+dir = Vector2i(0, -1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t3wsr")
+animation = &"open"
+autoplay = "open"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 20)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ghet6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_4dv35")
