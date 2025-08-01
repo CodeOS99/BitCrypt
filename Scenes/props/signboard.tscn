@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/signboard.gd" id="1_3j12r"]
 [ext_resource type="Texture2D" uid="uid://dt71wluio1kip" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/props.png" id="1_wtfwp"]
 [ext_resource type="Texture2D" uid="uid://mca1r6um6sph" path="res://Assets/SGQ_ui_v1_0_0/SGQ_ui/game_ui/ui_elements.png" id="3_prbgf"]
+[ext_resource type="PackedScene" uid="uid://ccqc6h8dcetqs" path="res://Scenes/interact_help_shower.tscn" id="4_gwxut"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4s3lw"]
 atlas = ExtResource("1_wtfwp")
@@ -19,9 +20,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rbxnm"]
-radius = 15.0
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8eg43"]
 texture = ExtResource("3_prbgf")
 texture_margin_left = 3.0
@@ -36,20 +34,6 @@ script = ExtResource("1_3j12r")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ghqe8")
 autoplay = "default"
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_rbxnm")
-
-[node name="Label" type="Label" parent="."]
-offset_left = -37.0
-offset_top = 8.0
-offset_right = 59.0
-offset_bottom = 28.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "e to interact"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -71,5 +55,7 @@ theme_override_styles/panel = SubResource("StyleBoxTexture_8eg43")
 layout_mode = 2
 autowrap_mode = 3
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[node name="interactHelpShower" parent="." instance=ExtResource("4_gwxut")]
+
+[connection signal="player_enter" from="interactHelpShower" to="." method="_on_interact_help_shower_player_enter"]
+[connection signal="player_exit" from="interactHelpShower" to="." method="_on_interact_help_shower_player_exit"]

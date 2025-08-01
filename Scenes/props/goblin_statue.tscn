@@ -1,0 +1,65 @@
+[gd_scene load_steps=10 format=3 uid="uid://bt55ko66jdmt0"]
+
+[ext_resource type="Script" path="res://Scripts/goblin_statue.gd" id="1_o0frx"]
+[ext_resource type="Texture2D" uid="uid://dmm2vau0qf2qo" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/animated_props.png" id="1_u6he1"]
+[ext_resource type="PackedScene" uid="uid://4twh1kj7svlx" path="res://Scenes/player_detector.tscn" id="3_qlj16"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0gey"]
+atlas = ExtResource("1_u6he1")
+region = Rect2(112, 16, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x5fgm"]
+atlas = ExtResource("1_u6he1")
+region = Rect2(128, 16, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tv8b4"]
+atlas = ExtResource("1_u6he1")
+region = Rect2(144, 16, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_noiwm"]
+atlas = ExtResource("1_u6he1")
+region = Rect2(160, 16, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8wtsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0gey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x5fgm")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tv8b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_noiwm")
+}],
+"loop": true,
+"name": &"inactive",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pbq1i"]
+radius = 24.0208
+
+[node name="goblin_statue" type="Node2D"]
+script = ExtResource("1_o0frx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8wtsu")
+animation = &"inactive"
+autoplay = "inactive"
+frame_progress = 0.798855
+
+[node name="player_detector" parent="." instance=ExtResource("3_qlj16")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+shape = SubResource("CircleShape2D_pbq1i")
+
+[connection signal="player_enter" from="player_detector" to="." method="_on_player_detector_player_enter"]

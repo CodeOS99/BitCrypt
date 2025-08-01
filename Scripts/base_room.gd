@@ -9,13 +9,10 @@ extends Node2D
 
 var openings: Array[Opening]
 
-enum room_type {
-	COMBAT,
-	TRAP,
-	PUZZLE
-}
+@export var curr_room_type: RoomData.room_type
 
-@export var curr_room_type: room_type
+func init(this_rooms_type: RoomData.room_type):
+	self.curr_room_type = this_rooms_type
 
 func _ready() -> void:
 	if openings_cotainer_node == null:
@@ -24,18 +21,22 @@ func _ready() -> void:
 		print("props node is null; check if it exists and its name is 'props'(contains all props)")
 	if doors == null:
 		print("doors node is null; check if it exists and its name is 'doors' and its path is parops/doors(contains all doors)")
+
+	if curr_room_type == RoomData.room_type.COMBAT:
+		pass
+	
 	for opening in openings_cotainer_node.get_children():
 		openings.append(opening) # THis is used by the door script
 	
 	for door in doors.get_children():
 		door.entered.connect(door_entered)
-		if curr_room_type == room_type.COMBAT:
+		if curr_room_type == RoomData.room_type.COMBAT:
 			door.close()
 
 func make_random_openings(entered_opening: Opening):
 	for opening in openings:
 		if opening != entered_opening:
-			if randi() % 2 == 0:
+			if randi() % 2 == 1:
 				opening.door.become_tile()
 
 func door_entered():

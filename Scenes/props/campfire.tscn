@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpbmwtgb5osq7"]
+
+[ext_resource type="Texture2D" uid="uid://dmm2vau0qf2qo" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/animated_props.png" id="1_hmpki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynvcy"]
+atlas = ExtResource("1_hmpki")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7gve"]
+atlas = ExtResource("1_hmpki")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_axkjl"]
+atlas = ExtResource("1_hmpki")
+region = Rect2(32, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ql50b"]
+atlas = ExtResource("1_hmpki")
+region = Rect2(48, 64, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ff7k2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynvcy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7gve")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_axkjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ql50b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[node name="campfire" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ff7k2")
+autoplay = "default"
+frame_progress = 0.0408324

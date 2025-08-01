@@ -1,33 +1,16 @@
-class_name Door
-extends Node2D
+class_name InteractiveDoor
+extends Door
 
-signal entered
+@export var player_spawn_offset_m: Vector2i = Vector2i(-25, 25)
 
-@export var dir: Vector2i
-@export var allowed_room_types: Array[RoomData.room_type]
-@export var global_disallowed_types: Array[RoomData.room_type] = [RoomData.room_type.LOCKED_TREASURE]
+@onready var interactive_help_shower = $interactHelpShower
 
-@onready var enter_area: Area2D = $Area2D
-@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var player_blocker: StaticBody2D = $StaticBody2D
-
-var room_data_path: String = "res://Scripts/Resources/rooms/"
-
-var room_data: Array[RoomData] = []
-
-var exit_dir: Vector2i
-var possibleRooms: Array[PackedScene] = []
-
-var is_open: bool = true
+var is_player_in_range: bool = false
 
 func _ready() -> void:
 	exit_dir = -dir
-	enter_area.body_entered.connect(_on_area_2d_body_entered)
-	
-	if not is_open:
-		close()
-	else:
-		open()
+	interactive_help_shower.player_enter.connect(_on_interact_help_shower_player_enter)
+	interactive_help_shower.player_exit.connect(_on_interact_help_shower_player_exit)
 	
 	load_room_data_from_directory(room_data_path)
 
@@ -47,6 +30,11 @@ func _ready() -> void:
 			if not_possible_dir == exit_dir:
 				continue
 		possibleRooms.append(data.scene)
+	
+
+func _process(delta: float) -> void:
+	if is_player_in_range and Input.is_action_just_pressed("use"):
+		spawnRoom()
 
 func load_room_data_from_directory(path: String) -> void:
 	var dir = DirAccess.open(path)
@@ -66,48 +54,32 @@ func load_room_data_from_directory(path: String) -> void:
 		file_name = dir.get_next()
 
 	dir.list_dir_end()
-
-func close():
-	is_open = false
-	player_blocker.set_collision_layer_value(1, true)
-	animated_sprite.play("tile") # Tile because close looks like shit :D
-
-func open():
-	is_open = true
-	player_blocker.set_collision_layer_value(1, false)
-	animated_sprite.play("open")
-
-func become_tile():
-	is_open = false
-	player_blocker.visible = true
-	animated_sprite.play("tile")
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if not is_open:
-		return
-
-	if body.name != "player":
-		return
-
-	if possibleRooms.is_empty():
-		print("No matching room found.")
-		return
-
+	
+func spawnRoom():
 	var idx = randi() % possibleRooms.size()
 	var chosen_scene: PackedScene = possibleRooms[idx]
 
 	var new_room = chosen_scene.instantiate() as base_room
+
 	get_tree().root.call_deferred('add_child', new_room)
-
-	await get_tree().process_frame
-
+	await get_tree().process_frame # wait for it to load!
 	for opening in new_room.openings:
-		if opening.coords == exit_dir and not opening.door is InteractiveDoor:
+		if opening.coords == exit_dir:
+			print("Kgefoji")
 			new_room.player.global_position = opening.player_spawn_pos + Vector2(opening.coords) * Vector2(-25, 25)
-			new_room.make_random_openings(opening)
-
 	entered.emit()
 
+func close():
+	pass
+
+func open():
+	pass
+
+func become_tile():
+	pass
 
 func _on_interact_help_shower_player_enter() -> void:
-	pass # Replace with function body.
+	is_player_in_range = true
+
+func _on_interact_help_shower_player_exit() -> void:
+	is_player_in_range = false

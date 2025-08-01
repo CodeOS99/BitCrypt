@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://dsnprdf1hbgvp"]
+
+[ext_resource type="PackedScene" uid="uid://brdu4gxem32dt" path="res://Scenes/rooms/first_real_treasure.tscn" id="1_0v2aj"]
+[ext_resource type="Script" path="res://Scripts/RoomData.gd" id="1_opo21"]
+
+[resource]
+script = ExtResource("1_opo21")
+scene = ExtResource("1_0v2aj")
+curr_room_type = 4
+excluded_openings = Array[Vector2i]([])

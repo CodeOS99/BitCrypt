@@ -22,7 +22,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nlg5l")
 }],
 "loop": true,
-"name": &"closed",
+"name": &"close",
 "speed": 5.0
 }, {
 "frames": [{

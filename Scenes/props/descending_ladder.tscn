@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://canfxv7bxkkok"]
+
+[ext_resource type="Script" path="res://Scripts/interactive_door.gd" id="1_0dc37"]
+[ext_resource type="Texture2D" uid="uid://dt71wluio1kip" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/props.png" id="1_hgiye"]
+[ext_resource type="PackedScene" uid="uid://ccqc6h8dcetqs" path="res://Scenes/interact_help_shower.tscn" id="3_qy7eq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8si75"]
+atlas = ExtResource("1_hgiye")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nae34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8si75")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="descendingLadder" type="Node2D"]
+script = ExtResource("1_0dc37")
+dir = Vector2i(0, -1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nae34")
+
+[node name="interactHelpShower" parent="." instance=ExtResource("3_qy7eq")]
