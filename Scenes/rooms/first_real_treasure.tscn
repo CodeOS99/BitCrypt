@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://brdu4gxem32dt"]
+[gd_scene load_steps=25 format=4 uid="uid://brdu4gxem32dt"]
 
 [ext_resource type="Script" path="res://Scripts/base_room.gd" id="1_e3ovn"]
 [ext_resource type="Texture2D" uid="uid://ddceastutov1i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/surground.png" id="1_uckr2"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://canfxv7bxkkok" path="res://Scenes/props/descending_ladder.tscn" id="8_66kyi"]
 [ext_resource type="PackedScene" uid="uid://dv5a743p5l2sn" path="res://Scenes/player.tscn" id="9_sxbgt"]
 [ext_resource type="PackedScene" uid="uid://c5jmwapiaxxla" path="res://Scenes/props/ascending_ladder.tscn" id="11_lib1i"]
+[ext_resource type="PackedScene" uid="uid://cik3ovrlbe16j" path="res://Scenes/props/chest.tscn" id="13_s4wfw"]
 [ext_resource type="Script" path="res://Scripts/Opening.gd" id="14_wwyx4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o0cf2"]
@@ -751,6 +752,9 @@ position = Vector2(288, 288)
 position = Vector2(146, 120)
 
 [node name="props" type="Node2D" parent="."]
+
+[node name="chest" parent="props" instance=ExtResource("13_s4wfw")]
+position = Vector2(152, 232)
 
 [node name="doors" type="Node2D" parent="props"]
 

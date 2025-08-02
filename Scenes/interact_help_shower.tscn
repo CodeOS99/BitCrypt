@@ -36,7 +36,7 @@ tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath("Label:position")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3, 1),
@@ -70,11 +70,10 @@ radius = 15.0
 script = ExtResource("1_ipnv1")
 
 [node name="Label" type="Label" parent="."]
-visible = false
 offset_left = -2.0
-offset_top = -16.0
+offset_top = -26.4729
 offset_right = 94.0
-offset_bottom = 4.0
+offset_bottom = -6.47292
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 8

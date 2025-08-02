@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://dv5a743p5l2sn"]
+[gd_scene load_steps=29 format=3 uid="uid://dv5a743p5l2sn"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_4nc5l"]
 [ext_resource type="Texture2D" uid="uid://del5817rl3d1s" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/characters/main_mod/elf.png" id="1_egey3"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="3_bds1x"]
+[ext_resource type="PackedScene" uid="uid://c0sek5ii3jpni" path="res://Scenes/weapons/sword.tscn" id="4_47vgc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q63t8"]
 atlas = ExtResource("1_egey3")
@@ -328,7 +329,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ngqfk"]
 shader = ExtResource("3_bds1x")
-shader_parameter/overlay = false
+shader_parameter/overlay = true
 shader_parameter/scanlines_opacity = 0.4
 shader_parameter/scanlines_width = 0.25
 shader_parameter/grille_opacity = 0.3
@@ -345,7 +346,7 @@ shader_parameter/static_noise_intensity = 0.0
 shader_parameter/aberration = 4.75e-08
 shader_parameter/brightness = 1.4
 shader_parameter/discolor = true
-shader_parameter/warp_amount = 1.0
+shader_parameter/warp_amount = 0.097
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.0
 shader_parameter/vignette_opacity = 1.0
@@ -382,6 +383,7 @@ editor_draw_limits = true
 layer = 100
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_ngqfk")
 anchors_preset = 15
@@ -389,3 +391,31 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HUDContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer"]
+offset_left = 16.0
+offset_top = 56.0
+offset_right = 144.0
+offset_bottom = 96.0
+
+[node name="CoinAmountShower" type="HBoxContainer" parent="Camera2D/CanvasLayer/HUDContainer"]
+layout_mode = 2
+
+[node name="CoinLabel" type="Label" parent="Camera2D/CanvasLayer/HUDContainer/CoinAmountShower"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0588235, 0.219608, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0.607843, 0.737255, 0.0588235, 1)
+theme_override_font_sizes/font_size = 24
+text = "COINS - "
+
+[node name="CoinAmountLabel" type="Label" parent="Camera2D/CanvasLayer/HUDContainer/CoinAmountShower"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.607843, 0.737255, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="logContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer/HUDContainer"]
+layout_mode = 2
+
+[node name="Sword" parent="." instance=ExtResource("4_47vgc")]

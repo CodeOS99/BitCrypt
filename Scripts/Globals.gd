@@ -1,3 +1,3 @@
 class_name Globals
 
-static var player: CharacterBody2D
+static var player: Player

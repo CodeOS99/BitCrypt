@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 const WALK_SPEED: float = 100.0
@@ -8,6 +9,12 @@ var can_move: bool = true
 
 @onready var child_parent: Node2D = $childParent
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var log_container: VBoxContainer = $Camera2D/CanvasLayer/HUDContainer/logContainer
+@onready var coin_amount_label: Label = $Camera2D/CanvasLayer/HUDContainer/CoinAmountShower/CoinAmountLabel
+
+var log_label = preload("res://Scenes/log_label.tscn")
+
+var coins: int = 0
 
 func _ready() -> void:
 	Globals.player = self
@@ -40,3 +47,13 @@ func handleMovement(delta: float):
 			animation_player.play("idle")
 
 	move_and_slide()
+
+func add_log(text):
+	var l = log_label.instantiate()
+	l.text = text
+	log_container.add_child(l)
+	
+func add_coins(n: int):
+	coins += n
+	add_log("+" + str(n) + " coins")
+	coin_amount_label.text = str(coins)

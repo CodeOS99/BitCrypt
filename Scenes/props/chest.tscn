@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cik3ovrlbe16j"]
+
+[ext_resource type="Script" path="res://Scripts/chest.gd" id="1_q5tia"]
+[ext_resource type="Texture2D" uid="uid://dmm2vau0qf2qo" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/animated_props.png" id="1_xk70x"]
+[ext_resource type="PackedScene" uid="uid://ccqc6h8dcetqs" path="res://Scenes/interact_help_shower.tscn" id="2_mml1x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmlw8"]
+atlas = ExtResource("1_xk70x")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfyro"]
+atlas = ExtResource("1_xk70x")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_135yu"]
+atlas = ExtResource("1_xk70x")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_muopt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmlw8")
+}],
+"loop": true,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmlw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfyro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_135yu")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_150fa"]
+size = Vector2(14, 14)
+
+[node name="chest" type="Node2D"]
+script = ExtResource("1_q5tia")
+
+[node name="interactHelpShower" parent="." instance=ExtResource("2_mml1x")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_muopt")
+animation = &"close"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_150fa")
+
+[connection signal="player_interact" from="interactHelpShower" to="." method="_on_interact_help_shower_player_interact"]
