@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c43yxm81wfpf0"]
+[gd_scene load_steps=7 format=3 uid="uid://c43yxm81wfpf0"]
 
 [ext_resource type="Script" path="res://Scenes/credits_keyboard_btn.gd" id="1_6jpop"]
 [ext_resource type="PackedScene" uid="uid://bwtvmj4k6uvwj" path="res://Scenes/keyboard_btn.tscn" id="2_tf21t"]
 [ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/sfx/option_beep.wav" id="3_kimbb"]
 [ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/sfx/select_button.wav" id="4_mm56h"]
-[ext_resource type="AudioStream" uid="uid://df5oumo1tc36b" path="res://Assets/Audio/music/Curiosity.mp3" id="5_jvy2f"]
 [ext_resource type="PackedScene" uid="uid://blsb27aml1tjv" path="res://Scenes/crt_shader_rect.tscn" id="6_wgiwo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nrw8"]
@@ -80,10 +79,6 @@ stream = ExtResource("3_kimbb")
 
 [node name="selectSound" type="AudioStreamPlayer" parent="CanvasLayer"]
 stream = ExtResource("4_mm56h")
-
-[node name="bgMusic" type="AudioStreamPlayer" parent="CanvasLayer"]
-stream = ExtResource("5_jvy2f")
-autoplay = true
 
 [node name="ColorRect" parent="CanvasLayer" instance=ExtResource("6_wgiwo")]
 

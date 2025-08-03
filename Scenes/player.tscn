@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_4nc5l"]
 [ext_resource type="Texture2D" uid="uid://del5817rl3d1s" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/characters/main_mod/elf.png" id="1_egey3"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="3_bds1x"]
-[ext_resource type="PackedScene" uid="uid://c0sek5ii3jpni" path="res://Scenes/weapons/sword.tscn" id="4_47vgc"]
+[ext_resource type="PackedScene" uid="uid://bvvpsmp3wdu4v" path="res://Scenes/weapons/bow.tscn" id="4_1jc40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q63t8"]
 atlas = ExtResource("1_egey3")
@@ -418,4 +418,4 @@ text = "0"
 [node name="logContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer/HUDContainer"]
 layout_mode = 2
 
-[node name="Sword" parent="." instance=ExtResource("4_47vgc")]
+[node name="bow" parent="." instance=ExtResource("4_1jc40")]

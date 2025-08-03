@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/option_beep.wav-46a8e878dc1d2ff67496e24fabd22
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100

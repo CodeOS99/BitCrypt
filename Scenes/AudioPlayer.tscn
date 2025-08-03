@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://1vb72tt5chin"]
+[gd_scene load_steps=4 format=3 uid="uid://1vb72tt5chin"]
 
 [ext_resource type="AudioStream" uid="uid://df5oumo1tc36b" path="res://Assets/Audio/music/Curiosity.mp3" id="1_gmo5x"]
 [ext_resource type="Script" path="res://Scripts/audio_player.gd" id="2_68ebu"]
+[ext_resource type="AudioStream" uid="uid://83lesnrx1k16" path="res://Assets/Audio/music/Electromagnetic Waves.mp3" id="3_257qs"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
-stream = ExtResource("1_gmo5x")
-autoplay = true
+[node name="Node" type="Node"]
 script = ExtResource("2_68ebu")
+
+[node name="title_screen_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_gmo5x")
+
+[node name="game_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_257qs")

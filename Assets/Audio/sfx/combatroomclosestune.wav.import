@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/combatroomclosestune.wav-3d27b3f33178412f28aa
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100

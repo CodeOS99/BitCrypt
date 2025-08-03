@@ -1,14 +1,13 @@
-extends AudioStreamPlayer
+extends Node
 
-const bg_music = preload("res://Assets/Audio/music/Curiosity.mp3")
+var curr_bg_player: AudioStreamPlayer2D
 
-func _play_music(music: AudioStream, volume: float = 0.0):
-	if stream == bg_music:
-		return
-	
-	stream = music
-	volume_db = volume
-	play()
+func playtitle_screen_music():
+	if $title_screen_music.playing == false:
+		$title_screen_music.play()
+		curr_bg_player = $title_screen_music
 
-func play_bg_music():
-	_play_music(bg_music)
+func play_game_music():
+	curr_bg_player.stop()
+	$game_music.play()
+	curr_bg_player = $game_music

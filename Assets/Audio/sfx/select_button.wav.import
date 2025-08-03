@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/select_button.wav-56a15a5fe57c7b8c4dc022e9497
 
 [params]
 
-force/8_bit=false
+force/8_bit=true
 force/mono=false
 force/max_rate=false
 force/max_rate_hz=44100

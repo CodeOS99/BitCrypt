@@ -34,7 +34,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if is_player_in_range and Input.is_action_just_pressed("use"):
-		spawnRoom()
+		spawn_room()
 
 func load_room_data_from_directory(path: String) -> void:
 	var dir = DirAccess.open(path)
@@ -55,20 +55,6 @@ func load_room_data_from_directory(path: String) -> void:
 
 	dir.list_dir_end()
 	
-func spawnRoom():
-	var idx = randi() % possibleRooms.size()
-	var chosen_scene: PackedScene = possibleRooms[idx]
-
-	var new_room = chosen_scene.instantiate() as base_room
-
-	get_tree().root.call_deferred('add_child', new_room)
-	await get_tree().process_frame # wait for it to load!
-	for opening in new_room.openings:
-		if opening.coords == exit_dir:
-			print("Kgefoji")
-			new_room.player.global_position = opening.player_spawn_pos + Vector2(opening.coords) * Vector2(-25, 25)
-	entered.emit()
-
 func close():
 	pass
 

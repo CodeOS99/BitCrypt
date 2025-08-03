@@ -4,7 +4,6 @@ extends Node2D
 @onready var openings_cotainer_node: Node2D = $all_openings
 @onready var props: Node2D = $props
 @onready var doors: Node2D = $props/doors
-@onready var player: CharacterBody2D = $player
 @onready var wall_tilemap: TileMapLayer = $walls
 
 var openings: Array[Opening]
@@ -15,6 +14,7 @@ func init(this_rooms_type: RoomData.room_type):
 	self.curr_room_type = this_rooms_type
 
 func _ready() -> void:
+	AudioPlayer.play_game_music()
 	if openings_cotainer_node == null:
 		print("opening_container_node is null; check if it exists and its name is 'all_openings'(contains openings for left, right, etc)")
 	if props == null:
@@ -37,6 +37,7 @@ func make_random_openings(entered_opening: Opening):
 	for opening in openings:
 		if opening != entered_opening:
 			if randi() % 2 == 1:
+				print("+1")
 				opening.door.become_tile()
 
 func door_entered():

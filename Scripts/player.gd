@@ -17,7 +17,10 @@ var log_label = preload("res://Scenes/log_label.tscn")
 var coins: int = 0
 
 func _ready() -> void:
-	Globals.player = self
+	if Globals.player == null:
+		print("real")
+		Globals.player = self
+		Globals.player_body = self as CharacterBody2D
 
 func _physics_process(delta: float) -> void:
 	handleMovement(delta)

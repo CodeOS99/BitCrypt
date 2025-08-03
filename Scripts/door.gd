@@ -93,21 +93,26 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		print("No matching room found.")
 		return
 
+	spawn_room()
+
+func spawn_room():
 	var idx = randi() % possibleRooms.size()
 	var chosen_scene: PackedScene = possibleRooms[idx]
 
 	var new_room = chosen_scene.instantiate() as base_room
-	get_tree().root.call_deferred('add_child', new_room)
+	get_tree().root.call_deferred("add_child", new_room)
 
 	await get_tree().process_frame
 
 	for opening in new_room.openings:
-		if opening.coords == exit_dir and not opening.door is InteractiveDoor:
-			new_room.player.global_position = opening.player_spawn_pos + Vector2(opening.coords) * Vector2(-25, 25)
-			new_room.make_random_openings(opening)
+		if opening.coords == exit_dir:
+			if opening.door != null and opening.door.get_class() == self.get_class():
+				var player := Globals.player_body
+				player.get_parent().remove_child(player)
+				new_room.add_child(player)
+				
+				player.global_position = opening.player_spawn_pos + Vector2(exit_dir) * Vector2(-25, 25)
+
+				new_room.make_random_openings(opening)
 
 	entered.emit()
-
-
-func _on_interact_help_shower_player_enter() -> void:
-	pass # Replace with function body.
