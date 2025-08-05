@@ -575,7 +575,9 @@ libraries = {
 }
 
 [node name="damager" parent="." instance=ExtResource("2_d1gpn")]
-damage = 15
+damage = 10
+kb = 25
+self_kb = 75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damager"]
 position = Vector2(-6, -14)

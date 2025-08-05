@@ -1,0 +1,163 @@
+[gd_scene load_steps=18 format=3 uid="uid://ba7alob8kls5o"]
+
+[ext_resource type="Script" path="res://Scripts/enemies/slime_small.gd" id="1_22o0u"]
+[ext_resource type="Texture2D" uid="uid://12qjiil0qwcg" path="res://Assets/SGQ_Enemies_v1_0_0/SGQ_Enemies/normal/32x32/medium_slime.png" id="2_liuuc"]
+[ext_resource type="PackedScene" uid="uid://4twh1kj7svlx" path="res://Scenes/player_detector.tscn" id="3_xyu4k"]
+[ext_resource type="PackedScene" uid="uid://br3cnet7eux2k" path="res://Scenes/damager.tscn" id="4_rtvnc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roane"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhvgf"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o25pt"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lr0y"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m83n5"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n581r"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bsgw8"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7k4c"]
+atlas = ExtResource("2_liuuc")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry4tf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhvgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o25pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lr0y")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roane")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhvgf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o25pt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lr0y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m83n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n581r")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m83n5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n581r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bsgw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7k4c")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_efmes"]
+radius = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nnr1"]
+height = 24.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmbdl"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifcn0"]
+radius = 8.0
+height = 22.0
+
+[node name="biggest_slime_enemy" type="CharacterBody2D"]
+script = ExtResource("1_22o0u")
+max_health = 50
+health = 50
+speed = 90
+value = 20
+move_frame = 3
+
+[node name="FlipParent" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipParent"]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_ry4tf")
+animation = &"hurt"
+autoplay = "jump"
+frame = 5
+frame_progress = 1.0
+
+[node name="player_detector" parent="FlipParent" instance=ExtResource("3_xyu4k")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/player_detector"]
+shape = SubResource("CircleShape2D_efmes")
+
+[node name="damager" parent="FlipParent" node_paths=PackedStringArray("parent_body") instance=ExtResource("4_rtvnc")]
+damage = 14
+parent_body = NodePath("../..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/damager"]
+position = Vector2(0, -4)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_3nnr1")
+debug_color = Color(0.315064, 0.492225, 1, 0.42)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -10.0
+offset_top = -11.0
+offset_right = 9.0
+offset_bottom = -7.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_pmbdl")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ifcn0")
+debug_color = Color(0.892335, 0.322686, 0, 0.42)
+
+[connection signal="animation_finished" from="FlipParent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

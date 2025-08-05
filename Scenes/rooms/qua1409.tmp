@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bjif5illvxfg8"]
+[gd_scene load_steps=27 format=4 uid="uid://bjif5illvxfg8"]
 
 [ext_resource type="Script" path="res://Scripts/base_room.gd" id="1_xsap7"]
 [ext_resource type="Texture2D" uid="uid://ddceastutov1i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/surground.png" id="2_lywek"]
@@ -745,9 +745,6 @@ sources/1 = SubResource("TileSetAtlasSource_tcw1j")
 sources/2 = SubResource("TileSetAtlasSource_n0p1v")
 sources/3 = SubResource("TileSetScenesCollectionSource_kax1e")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihtpb"]
-size = Vector2(27, 20)
-
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xsap7")
 
@@ -807,9 +804,3 @@ door = NodePath("../../props/doors/door_up")
 position = Vector2(232, 228)
 text_on_label = "SLIME INFESTATION
 STAY AWAY"
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(232.5, 250)
-shape = SubResource("RectangleShape2D_ihtpb")

@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c0xli34rcyohp" path="res://Scenes/props/door_down.tscn" id="9_2eqmf"]
 [ext_resource type="PackedScene" uid="uid://vxbdqvr60sns" path="res://Scenes/props/door_right.tscn" id="10_jraym"]
 [ext_resource type="PackedScene" uid="uid://b2ne1yhmhltrn" path="res://Scenes/props/door_up.tscn" id="11_1xcxn"]
-[ext_resource type="PackedScene" uid="uid://ba7alob8kls5o" path="res://Scenes/enemies/biggest_slime_enemy.tscn" id="12_yoejl"]
+[ext_resource type="PackedScene" uid="uid://sto1qihr1kyq" path="res://Scenes/enemies/slime_small.tscn" id="12_v6tnj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tu8s7"]
 texture = ExtResource("1_fh6w6")
@@ -620,5 +620,5 @@ position = Vector2(152, 8)
 
 [node name="all_openings" type="Node2D" parent="."]
 
-[node name="biggest_slime_enemy" parent="." instance=ExtResource("12_yoejl")]
-position = Vector2(96, 40)
+[node name="slime_enemy" parent="." instance=ExtResource("12_v6tnj")]
+position = Vector2(56, 48)
