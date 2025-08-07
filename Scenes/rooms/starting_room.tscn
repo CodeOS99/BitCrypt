@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dhhe1rtxt2u61"]
+[gd_scene load_steps=20 format=4 uid="uid://dhhe1rtxt2u61"]
 
 [ext_resource type="Script" path="res://Scripts/base_room.gd" id="1_ebatj"]
 [ext_resource type="Texture2D" uid="uid://ddceastutov1i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/surground.png" id="1_fh6w6"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://c0xli34rcyohp" path="res://Scenes/props/door_down.tscn" id="9_2eqmf"]
 [ext_resource type="PackedScene" uid="uid://vxbdqvr60sns" path="res://Scenes/props/door_right.tscn" id="10_jraym"]
 [ext_resource type="PackedScene" uid="uid://b2ne1yhmhltrn" path="res://Scenes/props/door_up.tscn" id="11_1xcxn"]
-[ext_resource type="PackedScene" uid="uid://y1gx7qhdfl2m" path="res://Scenes/shop/goblin.tscn" id="12_2twjm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tu8s7"]
 texture = ExtResource("1_fh6w6")
@@ -619,6 +618,3 @@ position = Vector2(280, 136)
 position = Vector2(152, 8)
 
 [node name="all_openings" type="Node2D" parent="."]
-
-[node name="Goblin" parent="." instance=ExtResource("12_2twjm")]
-position = Vector2(120, 192)

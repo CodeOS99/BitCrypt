@@ -772,14 +772,11 @@ door = NodePath("../../props/doors/descendingLadder")
 [node name="Goblin" parent="." instance=ExtResource("15_6dbtp")]
 position = Vector2(112, 176)
 
-[node name="bigger_slime_enemy" parent="." instance=ExtResource("18_tft4t")]
-position = Vector2(112, 224)
-
 [node name="slime_enemy" parent="." instance=ExtResource("16_0friu")]
-position = Vector2(208, 208)
-
-[node name="bigger_slime_enemy2" parent="." instance=ExtResource("18_tft4t")]
-position = Vector2(56, 208)
+position = Vector2(48, 136)
 
 [node name="biggest_slime_enemy" parent="." instance=ExtResource("17_8epij")]
-position = Vector2(160, 232)
+position = Vector2(112, 144)
+
+[node name="bigger_slime_enemy" parent="." instance=ExtResource("18_tft4t")]
+position = Vector2(40, 192)

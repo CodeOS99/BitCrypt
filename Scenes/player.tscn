@@ -441,7 +441,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.607843, 0.737255, 0.0588235, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
-text = "0"
+text = "10"
 
 [node name="TyrranyBar" type="ProgressBar" parent="Camera2D/playerUI/HUDContainer"]
 layout_mode = 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://dbef15qshqkef"]
+[gd_scene load_steps=27 format=4 uid="uid://dbef15qshqkef"]
 
 [ext_resource type="Script" path="res://Scripts/combat.gd" id="1_vqmdl"]
 [ext_resource type="Texture2D" uid="uid://ddceastutov1i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/surground.png" id="2_ff2j1"]
@@ -15,9 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://b2ne1yhmhltrn" path="res://Scenes/props/door_up.tscn" id="14_hpy4l"]
 [ext_resource type="PackedScene" uid="uid://y1gx7qhdfl2m" path="res://Scenes/shop/goblin.tscn" id="15_6dbtp"]
 [ext_resource type="Script" path="res://Scripts/Opening.gd" id="15_qcyh8"]
-[ext_resource type="PackedScene" uid="uid://sto1qihr1kyq" path="res://Scenes/enemies/slime_small.tscn" id="16_0friu"]
-[ext_resource type="PackedScene" uid="uid://ba7alob8kls5o" path="res://Scenes/enemies/biggest_slime_enemy.tscn" id="17_8epij"]
-[ext_resource type="PackedScene" uid="uid://t1nw83ahvxp8" path="res://Scenes/enemies/bigger_slime_enemy.tscn" id="18_tft4t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rn05p"]
 texture = ExtResource("2_ff2j1")
@@ -771,15 +768,3 @@ door = NodePath("../../props/doors/descendingLadder")
 
 [node name="Goblin" parent="." instance=ExtResource("15_6dbtp")]
 position = Vector2(112, 176)
-
-[node name="bigger_slime_enemy" parent="." instance=ExtResource("18_tft4t")]
-position = Vector2(112, 224)
-
-[node name="slime_enemy" parent="." instance=ExtResource("16_0friu")]
-position = Vector2(208, 208)
-
-[node name="bigger_slime_enemy2" parent="." instance=ExtResource("18_tft4t")]
-position = Vector2(56, 208)
-
-[node name="biggest_slime_enemy" parent="." instance=ExtResource("17_8epij")]
-position = Vector2(160, 232)

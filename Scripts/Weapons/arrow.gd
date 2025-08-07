@@ -19,6 +19,12 @@ func _ready():
 	rotation = direction.angle()
 	velocity = direction.normalized() * speed
 
+func take_damage(a, b, c):
+	pass
+
+func take_kb(a,b):
+	pass
+
 func _physics_process(delta: float) -> void:
 	move_and_collide(velocity * delta)
 

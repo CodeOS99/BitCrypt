@@ -6,19 +6,18 @@ signal entered
 @export var dir: Vector2i
 @export var allowed_room_types: Array[RoomData.room_type]
 @export var global_disallowed_types: Array[RoomData.room_type] = [RoomData.room_type.LOCKED_TREASURE]
+@export var is_interactive: bool = false
+
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 var enter_area: Area2D
 var player_blocker: StaticBody2D
 
-var room_data_path: String = "res://Scripts/Resources/rooms/"
-
-var room_data: Array[RoomData] = []
-
 var exit_dir: Vector2i
 var possibleRooms: Array[PackedScene] = []
 
 var is_open: bool = true
+var travelled_once = false
 
 func _ready() -> void:
 	if $Area2D != null:
@@ -33,10 +32,8 @@ func _ready() -> void:
 		close()
 	else:
 		open()
-	
-	load_room_data_from_directory(room_data_path)
-
-	for data in room_data:
+		
+	for data in Globals.room_data:
 		# If the allowed room types array has zero elements,
 		# I take it to be all rooms allowed
 		# If this is not the case, check if this data(which is a room data)
@@ -52,25 +49,6 @@ func _ready() -> void:
 			if not_possible_dir == exit_dir:
 				continue
 		possibleRooms.append(data.scene)
-
-func load_room_data_from_directory(path: String) -> void:
-	var dir = DirAccess.open(path)
-	if dir == null:
-		push_error("Failed to open directory: %s" % path)
-		return
-
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tres"):
-			var file_path = path + file_name
-			var data = load(file_path) as RoomData
-			if data != null:
-				room_data.append(data)
-		file_name = dir.get_next()
-
-	dir.list_dir_end()
 
 func close():
 	is_open = false
@@ -104,23 +82,33 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	spawn_room()
 
 func spawn_room():
+	if travelled_once:
+		return
+	travelled_once = true
+	var room = create_room()
+	add_room_to_scene(room)
+	await get_tree().process_frame
+	setup_player_in_room(room)
+	entered.emit()
+
+func create_room() -> base_room:
 	var idx = randi() % possibleRooms.size()
 	var chosen_scene: PackedScene = possibleRooms[idx]
-
 	var new_room = chosen_scene.instantiate() as base_room
+	return new_room
+
+func add_room_to_scene(new_room: base_room):
 	get_tree().root.call_deferred("add_child", new_room)
 
-	await get_tree().process_frame
-
+func setup_player_in_room(new_room: base_room):
 	for opening in new_room.openings:
 		if opening.coords == exit_dir:
-			if opening.door != null and opening.door.get_class() == self.get_class():
-				var player := Globals.player_body
-				player.get_parent().remove_child(player)
-				new_room.add_child(player)
-				
-				player.global_position = opening.player_spawn_pos + Vector2(exit_dir) * Vector2(-25, 25)
-
+			if opening.door != null and opening.door.is_interactive == self.is_interactive:
+				transfer_player_to_new_room(opening, new_room)
 				new_room.make_random_openings(opening)
 
-	entered.emit()
+func transfer_player_to_new_room(opening, new_room: base_room):
+	var player := Globals.player_body
+	player.get_parent().remove_child(player)
+	new_room.add_child(player)
+	player.global_position = opening.player_spawn_pos + Vector2(exit_dir) * Vector2(-25, 25)

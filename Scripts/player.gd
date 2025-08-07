@@ -22,7 +22,7 @@ var log_label = preload("res://Scenes/log_label.tscn")
 var bow = preload("res://Scenes/weapons/bow.tscn")
 var sword = preload("res://Scenes/weapons/sword.tscn")
 
-var coins: int = 100
+var coins: int = 0
 
 var max_health: int = 50
 var curr_health: int = max_health

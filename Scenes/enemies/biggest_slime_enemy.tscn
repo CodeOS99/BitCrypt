@@ -107,8 +107,8 @@ height = 24.0
 bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ifcn0"]
-radius = 8.0
-height = 22.0
+radius = 6.0
+height = 16.0
 
 [node name="biggest_slime_enemy" type="CharacterBody2D"]
 script = ExtResource("1_22o0u")

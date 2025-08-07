@@ -7,14 +7,13 @@ extends Door
 
 var is_player_in_range: bool = false
 
+
 func _ready() -> void:
 	exit_dir = -dir
 	interactive_help_shower.player_enter.connect(_on_interact_help_shower_player_enter)
 	interactive_help_shower.player_exit.connect(_on_interact_help_shower_player_exit)
-	
-	load_room_data_from_directory(room_data_path)
-
-	for data in room_data:
+	is_interactive = true
+	for data in Globals.room_data:
 		# If the allowed room types array has zero elements,
 		# I take it to be all rooms allowed
 		# If this is not the case, check if this data(which is a room data)
@@ -29,32 +28,16 @@ func _ready() -> void:
 		for not_possible_dir in data.excluded_openings: # excluded are the ones for which there is no door
 			if not_possible_dir == exit_dir:
 				continue
-		possibleRooms.append(data.scene)
-	
+		print(str(data.has_interact_openings as int) + " yes ")
+		if data.has_interact_openings:
+			print("odjfosjdo")
+			possibleRooms.append(data.scene)
 
 func _process(delta: float) -> void:
 	if is_player_in_range and Input.is_action_just_pressed("use"):
+		
 		spawn_room()
 
-func load_room_data_from_directory(path: String) -> void:
-	var dir = DirAccess.open(path)
-	if dir == null:
-		push_error("Failed to open directory: %s" % path)
-		return
-
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tres"):
-			var file_path = path + file_name
-			var data = load(file_path) as RoomData
-			if data != null:
-				room_data.append(data)
-		file_name = dir.get_next()
-
-	dir.list_dir_end()
-	
 func close():
 	pass
 

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckw08a5ldj3no"]
+
+[ext_resource type="Texture2D" uid="uid://ch35axuv8ptp" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/weapons_and_projectiles/projectiles_animated.png" id="1_jl2ng"]
+[ext_resource type="Script" path="res://Scripts/Weapons/arrow.gd" id="1_otq5r"]
+[ext_resource type="PackedScene" uid="uid://br3cnet7eux2k" path="res://Scenes/damager.tscn" id="2_73wat"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8u7s"]
+atlas = ExtResource("1_jl2ng")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55ocg"]
+atlas = ExtResource("1_jl2ng")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kb852"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8u7s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55ocg")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpd7m"]
+size = Vector2(15, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwxsh"]
+size = Vector2(11, 1)
+
+[node name="arrow" type="CharacterBody2D"]
+script = ExtResource("1_otq5r")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kb852")
+autoplay = "default"
+
+[node name="damager" parent="." node_paths=PackedStringArray("parent_body") instance=ExtResource("2_73wat")]
+visible = false
+damage = 4
+parent_body = NodePath("..")
+kb = 150
+self_kb = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="damager"]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_xpd7m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_iwxsh")
+
+[connection signal="hit" from="damager" to="." method="_on_damager_hit"]

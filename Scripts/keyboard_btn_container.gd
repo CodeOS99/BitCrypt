@@ -7,6 +7,7 @@ var number_of_options: int = 0
 @onready var selectSoundPlayer = $"../selectSound"
 
 func _ready() -> void:
+	Globals.load_room_data_from_directory()
 	AudioPlayer.playtitle_screen_music()
 	number_of_options = get_child_count()
 	get_child(curr_focus_idx).grab_focus()

@@ -106,6 +106,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_1fsoj"]
 radius = 19.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hfco"]
+bg_color = Color(0.188235, 0.384314, 0.188235, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5y6ug"]
 shader = ExtResource("8_x0sss")
 shader_parameter/overlay = true
@@ -129,9 +132,6 @@ shader_parameter/warp_amount = 0.097
 shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.0
 shader_parameter/vignette_opacity = 1.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hfco"]
-bg_color = Color(0.188235, 0.384314, 0.188235, 1)
 
 [node name="Goblin" type="Node2D"]
 z_index = 2
@@ -174,15 +174,6 @@ shape = SubResource("CircleShape2D_1fsoj")
 process_mode = 2
 layer = 3
 visible = false
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-z_index = 10
-material = SubResource("ShaderMaterial_5y6ug")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
 anchors_preset = 15
@@ -256,6 +247,15 @@ cost = 25
 [node name="BackBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_l0nr4")]
 layout_mode = 2
 text = "Back"
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = 10
+material = SubResource("ShaderMaterial_5y6ug")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="player_interact" from="interactHelpShower" to="." method="_on_interact_help_shower_player_interact"]
 [connection signal="body_entered" from="interactHelpShower/Area2D" to="interactHelpShower" method="_on_area_2d_body_entered"]

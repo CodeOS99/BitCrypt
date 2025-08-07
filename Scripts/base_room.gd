@@ -37,8 +37,12 @@ func make_random_openings(entered_opening: Opening):
 	for opening in openings:
 		if opening != entered_opening:
 			if randi() % 2 == 1:
-				print("+1")
 				opening.door.become_tile()
+			else:
+				opening.door.open()
+		else:
+			print("ksifgs")
+			opening.door.open()
 
 func door_entered():
 	self.queue_free()
