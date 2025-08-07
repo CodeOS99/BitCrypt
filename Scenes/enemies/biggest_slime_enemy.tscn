@@ -110,7 +110,7 @@ bg_color = Color(1, 1, 1, 1)
 radius = 6.0
 height = 16.0
 
-[node name="biggest_slime_enemy" type="CharacterBody2D"]
+[node name="biggest_slime_enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_22o0u")
 max_health = 50
 health = 50
@@ -136,6 +136,8 @@ shape = SubResource("CircleShape2D_efmes")
 [node name="damager" parent="FlipParent" node_paths=PackedStringArray("parent_body") instance=ExtResource("4_rtvnc")]
 damage = 14
 parent_body = NodePath("../..")
+kb = 10
+self_kb = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/damager"]
 position = Vector2(0, -4)

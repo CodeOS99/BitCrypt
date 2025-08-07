@@ -107,11 +107,12 @@ animations = [{
 radius = 10.0499
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0mx05"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q84nw"]
-radius = 5.09902
+radius = 5.0
 
-[node name="bat_enemy" type="StaticBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_mlsx6")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -140,12 +141,10 @@ shape = SubResource("CircleShape2D_6kd6c")
 [node name="damager" parent="FlipParent" node_paths=PackedStringArray("parent_body") instance=ExtResource("4_2jewg")]
 damage = 3
 parent_body = NodePath("../..")
+kb = 75
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/damager"]
 shape = SubResource("CircleShape2D_0mx05")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_q84nw")
-
-[connection signal="animation_finished" from="FlipParent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
-[connection signal="player_enter" from="FlipParent/player_detector" to="." method="_on_player_detector_player_enter"]

@@ -102,7 +102,7 @@ bg_color = Color(1, 1, 1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_mab12"]
 radius = 4.0
 
-[node name="bigger_slime_enemy" type="CharacterBody2D"]
+[node name="bigger_slime_enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_w6lcb")
 max_health = 30
 health = 30
@@ -127,6 +127,8 @@ shape = SubResource("CircleShape2D_holxy")
 [node name="damager" parent="FlipParent" node_paths=PackedStringArray("parent_body") instance=ExtResource("4_hpivv")]
 damage = 8
 parent_body = NodePath("../..")
+kb = 75
+self_kb = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/damager"]
 shape = SubResource("CircleShape2D_aisga")

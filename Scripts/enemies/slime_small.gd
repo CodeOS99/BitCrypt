@@ -15,6 +15,8 @@ func _ready() -> void:
 	$ProgressBar.value = health
 
 func _physics_process(delta: float) -> void:
+	if not is_instance_valid(Globals.player_body):
+		return
 	move_velocity = Vector2.ZERO # reset
 
 	if knockback_velocity.length() > 0.1: # kb

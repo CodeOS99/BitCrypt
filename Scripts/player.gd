@@ -30,6 +30,8 @@ var curr_health: int = max_health
 var knockback_velocity: Vector2 = Vector2.ZERO
 var move_velocity: Vector2 = Vector2.ZERO
 
+var is_hurting: bool = false
+
 func _ready() -> void:
 	if Globals.player == null:
 		print("real")
@@ -71,9 +73,11 @@ func handleMovement(delta: float):
 		elif input_vector.x < 0:
 			child_parent.scale.x = -abs(child_parent.scale.x)
 		move_velocity += input_vector * current_speed
-		animation_player.play("walk")
+
+		if not is_hurting:
+			animation_player.play("walk")
 	else:
-		if animation_player.assigned_animation != "idle":
+		if not is_hurting and animation_player.assigned_animation != "idle":
 			animation_player.play("idle")
 
 	velocity = move_velocity
@@ -89,12 +93,15 @@ func add_coins(n: int):
 	add_log("+" + str(n) + " coins")
 	coin_amount_label.text = str(coins)
 
-func take_damage(n: int, kb: int, from_pos:Vector2):
-	if animation_player.current_animation != "hurt":
+func take_damage(n: int, kb: int, from_pos: Vector2):
+	if not is_hurting:
 		curr_health -= n
 		animation_player.play("hurt")
-		can_move = false
+		is_hurting = true
+		take_kb(kb, from_pos)
 		health_bar.value = curr_health
+		$CollisionShape2D.set_deferred('disabled', true) # i frames
+		can_move = true
 
 func heal(n: int):
 	curr_health = min(curr_health+n, max_health)
@@ -116,7 +123,10 @@ func equip(weapon: String):
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hurt":
-		can_move = true
+		is_hurting = false
+		$CollisionShape2D.disabled = false
+	elif anim_name == "death":
+		pass
 
 func update_tyrrany(n: int):
 	tyrrany_bar.value = n
@@ -137,4 +147,4 @@ func incr_damage(n: int):
 
 func gain_arrows(n: int):
 	Globals.arrows += n
-	arrow_amount_label.text = "Arrows - " + str(Globals.arrows)
+	arrow_amount_label.text = str(Globals.arrows)
