@@ -6,10 +6,10 @@ signal entered
 @export var dir: Vector2i
 @export var allowed_room_types: Array[RoomData.room_type]
 @export var global_disallowed_types: Array[RoomData.room_type] = [RoomData.room_type.LOCKED_TREASURE]
-
-@onready var enter_area: Area2D = $Area2D
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var player_blocker: StaticBody2D = $StaticBody2D
+
+var enter_area: Area2D
+var player_blocker: StaticBody2D
 
 var room_data_path: String = "res://Scripts/Resources/rooms/"
 
@@ -21,6 +21,11 @@ var possibleRooms: Array[PackedScene] = []
 var is_open: bool = true
 
 func _ready() -> void:
+	if $Area2D != null:
+		enter_area = $Area2D
+	if $StaticBody2D != null:
+		var player_blocker = $StaticBody2D
+
 	exit_dir = -dir
 	enter_area.body_entered.connect(_on_area_2d_body_entered)
 	
@@ -69,17 +74,20 @@ func load_room_data_from_directory(path: String) -> void:
 
 func close():
 	is_open = false
-	player_blocker.set_collision_layer_value(1, true)
+	if player_blocker:
+		player_blocker.set_collision_layer_value(1, true)
 	animated_sprite.play("tile") # Tile because close looks like shit :D
 
 func open():
 	is_open = true
-	player_blocker.set_collision_layer_value(1, false)
+	if player_blocker:
+		player_blocker.set_collision_layer_value(1, false)
 	animated_sprite.play("open")
 
 func become_tile():
 	is_open = false
-	player_blocker.visible = true
+	if player_blocker:
+		player_blocker.visible = true
 	animated_sprite.play("tile")
 
 func _on_area_2d_body_entered(body: Node2D) -> void:

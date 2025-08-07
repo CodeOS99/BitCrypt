@@ -19,8 +19,9 @@ func _process(delta: float) -> void:
 				facing_dir = "down"
 		
 		var type: String = "face"
-		if Input.is_action_pressed("attack"):
+		if Input.is_action_pressed("attack") and Globals.arrows > 0:
 			type = "atk"
+			Globals.fire_arrow(1)
 		
 		$AnimationPlayer.play(facing_dir + "_" + type)
 	if "atk" in $AnimationPlayer.current_animation and $AnimatedSprite2D.frame == 3:

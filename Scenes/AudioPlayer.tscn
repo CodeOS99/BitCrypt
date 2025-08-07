@@ -1,14 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://1vb72tt5chin"]
+[gd_scene load_steps=7 format=3 uid="uid://1vb72tt5chin"]
 
 [ext_resource type="AudioStream" uid="uid://df5oumo1tc36b" path="res://Assets/Audio/music/Curiosity.mp3" id="1_gmo5x"]
 [ext_resource type="Script" path="res://Scripts/audio_player.gd" id="2_68ebu"]
 [ext_resource type="AudioStream" uid="uid://83lesnrx1k16" path="res://Assets/Audio/music/Electromagnetic Waves.mp3" id="3_257qs"]
+[ext_resource type="AudioStream" uid="uid://uwhhgbp588d5" path="res://Assets/Audio/music/Land with No Dragons.mp3" id="4_6nrug"]
+[ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/sfx/option_beep.wav" id="5_2bogm"]
+[ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/sfx/select_button.wav" id="6_m5bsn"]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" node_paths=PackedStringArray("beepSoundPlayer", "selectSoundPlayer")]
+process_mode = 3
 script = ExtResource("2_68ebu")
+beepSoundPlayer = NodePath("beep_sound_player")
+selectSoundPlayer = NodePath("select_sound_player")
 
 [node name="title_screen_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_gmo5x")
 
 [node name="game_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_257qs")
+
+[node name="shop_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6nrug")
+
+[node name="beep_sound_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2bogm")
+
+[node name="select_sound_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_m5bsn")

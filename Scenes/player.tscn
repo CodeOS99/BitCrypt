@@ -1,8 +1,9 @@
-[gd_scene load_steps=32 format=3 uid="uid://dv5a743p5l2sn"]
+[gd_scene load_steps=33 format=3 uid="uid://dv5a743p5l2sn"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_4nc5l"]
 [ext_resource type="Texture2D" uid="uid://del5817rl3d1s" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/characters/main_mod/elf.png" id="1_egey3"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="3_bds1x"]
+[ext_resource type="Script" path="res://Scripts/player_ui.gd" id="3_rpnea"]
 [ext_resource type="PackedScene" uid="uid://c0sek5ii3jpni" path="res://Scenes/weapons/sword.tscn" id="4_47vgc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q63t8"]
@@ -388,10 +389,12 @@ limit_smoothed = true
 position_smoothing_speed = 0.0
 editor_draw_limits = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+[node name="playerUI" type="CanvasLayer" parent="Camera2D"]
+process_mode = 3
 layer = 100
+script = ExtResource("3_rpnea")
 
-[node name="ColorRect" type="ColorRect" parent="Camera2D/CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Camera2D/playerUI"]
 z_index = 10
 material = SubResource("ShaderMaterial_ngqfk")
 anchors_preset = 15
@@ -400,39 +403,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HUDContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer"]
+[node name="HUDContainer" type="VBoxContainer" parent="Camera2D/playerUI"]
 offset_left = 16.0
 offset_top = 56.0
 offset_right = 144.0
 offset_bottom = 96.0
 
-[node name="CoinAmountShower" type="HBoxContainer" parent="Camera2D/CanvasLayer/HUDContainer"]
+[node name="CoinAmountShower" type="HBoxContainer" parent="Camera2D/playerUI/HUDContainer"]
 layout_mode = 2
 
-[node name="CoinLabel" type="Label" parent="Camera2D/CanvasLayer/HUDContainer/CoinAmountShower"]
+[node name="CoinLabel" type="Label" parent="Camera2D/playerUI/HUDContainer/CoinAmountShower"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0588235, 0.219608, 0.0588235, 1)
 theme_override_colors/font_shadow_color = Color(0.607843, 0.737255, 0.0588235, 1)
 theme_override_font_sizes/font_size = 24
 text = "COINS - "
 
-[node name="CoinAmountLabel" type="Label" parent="Camera2D/CanvasLayer/HUDContainer/CoinAmountShower"]
+[node name="CoinAmountLabel" type="Label" parent="Camera2D/playerUI/HUDContainer/CoinAmountShower"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.607843, 0.737255, 0.0588235, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "0"
 
-[node name="logContainer" type="VBoxContainer" parent="Camera2D/CanvasLayer/HUDContainer"]
+[node name="ArrowAmountShower" type="HBoxContainer" parent="Camera2D/playerUI/HUDContainer"]
 layout_mode = 2
 
-[node name="TyrranyBar" type="ProgressBar" parent="Camera2D/CanvasLayer"]
-offset_left = 16.0
-offset_top = 109.0
-offset_right = 213.0
-offset_bottom = 136.0
+[node name="ArrowLabel" type="Label" parent="Camera2D/playerUI/HUDContainer/ArrowAmountShower"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0588235, 0.219608, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0.607843, 0.737255, 0.0588235, 1)
+theme_override_font_sizes/font_size = 24
+text = "Arrows - "
+
+[node name="ArrowAmountLabel" type="Label" parent="Camera2D/playerUI/HUDContainer/ArrowAmountShower"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.607843, 0.737255, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "0"
+
+[node name="TyrranyBar" type="ProgressBar" parent="Camera2D/playerUI/HUDContainer"]
+layout_mode = 2
 theme_override_styles/fill = SubResource("StyleBoxFlat_oi0ol")
 value = 100.0
+
+[node name="logContainer" type="VBoxContainer" parent="Camera2D/playerUI/HUDContainer"]
+layout_mode = 2
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -23.0
@@ -444,6 +461,8 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_mj2e3")
 value = 100.0
 show_percentage = false
 
-[node name="Sword" parent="." instance=ExtResource("4_47vgc")]
+[node name="weapon" type="Node2D" parent="."]
+
+[node name="Sword" parent="weapon" instance=ExtResource("4_47vgc")]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

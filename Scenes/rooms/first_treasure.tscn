@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://dbef15qshqkef"]
+[gd_scene load_steps=27 format=4 uid="uid://dbef15qshqkef"]
 
 [ext_resource type="Script" path="res://Scripts/combat.gd" id="1_vqmdl"]
 [ext_resource type="Texture2D" uid="uid://ddceastutov1i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/surground.png" id="2_ff2j1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://c0xli34rcyohp" path="res://Scenes/props/door_down.tscn" id="12_jy0o0"]
 [ext_resource type="PackedScene" uid="uid://vxbdqvr60sns" path="res://Scenes/props/door_right.tscn" id="13_h5apd"]
 [ext_resource type="PackedScene" uid="uid://b2ne1yhmhltrn" path="res://Scenes/props/door_up.tscn" id="14_hpy4l"]
+[ext_resource type="PackedScene" uid="uid://y1gx7qhdfl2m" path="res://Scenes/shop/goblin.tscn" id="15_6dbtp"]
 [ext_resource type="Script" path="res://Scripts/Opening.gd" id="15_qcyh8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rn05p"]
@@ -764,3 +765,6 @@ door = NodePath("../../props/doors/door_up")
 [node name="Opening5" type="Node2D" parent="all_openings" node_paths=PackedStringArray("door")]
 script = ExtResource("15_qcyh8")
 door = NodePath("../../props/doors/descendingLadder")
+
+[node name="Goblin" parent="." instance=ExtResource("15_6dbtp")]
+position = Vector2(112, 176)

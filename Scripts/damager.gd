@@ -16,7 +16,8 @@ func _ready() -> void:
 		print("parent null")
 
 func _on_body_entered(body: Node2D) -> void:
+	print(body.name)
 	if ("enemy" in body.name or body.name == "player") and body != parent_body and active:
-		body.take_damage(damage, kb, parent_body.global_position)
+		body.take_damage(damage + ((parent_body.name == "player") as int) * Globals.damage, kb, parent_body.global_position)
 		parent_body.take_kb(self_kb, body.global_position)
 		hit.emit(body)

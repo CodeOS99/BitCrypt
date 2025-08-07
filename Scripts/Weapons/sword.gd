@@ -1,7 +1,7 @@
 extends Node2D
 
 func _ready() -> void:
-	$damager.parent_body = get_parent()
+	$damager.parent_body = get_parent().get_parent()
 
 func _process(delta: float) -> void:
 	if "atk" not in $AnimationPlayer.current_animation:
