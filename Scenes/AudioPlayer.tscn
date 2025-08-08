@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://1vb72tt5chin"]
+[gd_scene load_steps=9 format=3 uid="uid://1vb72tt5chin"]
 
-[ext_resource type="AudioStream" uid="uid://df5oumo1tc36b" path="res://Assets/Audio/music/Curiosity.mp3" id="1_gmo5x"]
 [ext_resource type="Script" path="res://Scripts/audio_player.gd" id="2_68ebu"]
-[ext_resource type="AudioStream" uid="uid://83lesnrx1k16" path="res://Assets/Audio/music/Electromagnetic Waves.mp3" id="3_257qs"]
-[ext_resource type="AudioStream" uid="uid://uwhhgbp588d5" path="res://Assets/Audio/music/Land with No Dragons.mp3" id="4_6nrug"]
+[ext_resource type="AudioStream" uid="uid://txmed4tdggr7" path="res://Assets/Audio/music/15. Rush Point.mp3" id="2_m3pq8"]
+[ext_resource type="AudioStream" uid="uid://vin80b4mslli" path="res://Assets/Audio/music/01. Slay The Evil.mp3" id="3_4fdb0"]
+[ext_resource type="AudioStream" uid="uid://cqd0vwxxec172" path="res://Assets/Audio/music/10. Jester Theme.mp3" id="4_4mbhn"]
 [ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/sfx/option_beep.wav" id="5_2bogm"]
 [ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/sfx/select_button.wav" id="6_m5bsn"]
+[ext_resource type="AudioStream" uid="uid://d1w77h812ewqn" path="res://Assets/Audio/music/05. Last Mission.mp3" id="7_w10ba"]
+[ext_resource type="AudioStream" uid="uid://crnawe1ulojmt" path="res://Assets/Audio/music/16. Truth.mp3" id="8_476su"]
 
 [node name="Node" type="Node" node_paths=PackedStringArray("beepSoundPlayer", "selectSoundPlayer")]
 process_mode = 3
@@ -14,16 +16,22 @@ beepSoundPlayer = NodePath("beep_sound_player")
 selectSoundPlayer = NodePath("select_sound_player")
 
 [node name="title_screen_music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("1_gmo5x")
+stream = ExtResource("2_m3pq8")
 
 [node name="game_music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_257qs")
+stream = ExtResource("3_4fdb0")
 
 [node name="shop_music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_6nrug")
+stream = ExtResource("4_4mbhn")
 
 [node name="beep_sound_player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_2bogm")
 
 [node name="select_sound_player" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_m5bsn")
+
+[node name="boss_bg_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_w10ba")
+
+[node name="end_bg_music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_476su")

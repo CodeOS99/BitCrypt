@@ -63,7 +63,7 @@ Toadzillart"
 layout_mode = 2
 theme_override_font_sizes/font_size = 43
 text = "ALL OF THE BACKGROUND MUSIC -
-TipTopTomCat"
+Hydrogene"
 
 [node name="meButton" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_tf21t")]
 layout_mode = 2

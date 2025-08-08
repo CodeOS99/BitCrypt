@@ -59,3 +59,6 @@ func _on_back_btn_pressed() -> void:
 	$"..".visible = false
 	AudioPlayer.play_game_music()
 	get_tree().paused = false
+
+func _on_blessings_btn_pressed() -> void:
+	Globals.has_goblin_blessing = true

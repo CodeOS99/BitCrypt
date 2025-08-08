@@ -208,6 +208,10 @@ grow_vertical = 2
 size_flags_horizontal = 4
 alignment = 1
 script = ExtResource("5_6jaxr")
+heal_amount = null
+arrow_amount = null
+max_health_incr_amount = null
+damage_incr_amount = null
 
 [node name="HealBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_l0nr4")]
 layout_mode = 2
@@ -244,6 +248,13 @@ text = "+5 damage - 25 coins"
 script = ExtResource("7_2kt0q")
 cost = 25
 
+[node name="BlessingsBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_l0nr4")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Goblin's Blessings - 100 coins"
+script = ExtResource("7_2kt0q")
+cost = 25
+
 [node name="BackBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_l0nr4")]
 layout_mode = 2
 text = "Back"
@@ -266,4 +277,5 @@ grow_vertical = 2
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/SwordBtn" to="CanvasLayer/VBoxContainer" method="_on_sword_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/MaxHPBtn" to="CanvasLayer/VBoxContainer" method="_on_max_hp_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/AtkDmgBtn" to="CanvasLayer/VBoxContainer" method="_on_atk_dmg_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/BlessingsBtn" to="CanvasLayer/VBoxContainer" method="_on_blessings_btn_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BackBtn" to="CanvasLayer/VBoxContainer" method="_on_back_btn_pressed"]

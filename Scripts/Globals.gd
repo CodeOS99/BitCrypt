@@ -8,6 +8,8 @@ static var max_tyrrany: int = 100
 static var arrows: int = 10
 static var damage: int = 0
 static var room_data = []
+static var slime_boss: SlimeBoss
+static var has_goblin_blessing: bool = true
 
 static func incr_tyrrany(n: int):
 	tyrrany_over_the_blight_of_flesh += n

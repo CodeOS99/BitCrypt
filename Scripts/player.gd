@@ -15,6 +15,7 @@ var can_move: bool = true
 @onready var tyrrany_bar: ProgressBar = $Camera2D/playerUI/HUDContainer/TyrranyBar
 @onready var weapon_parent_node: Node2D = $weapon
 @onready var arrow_amount_label: Label = $Camera2D/playerUI/HUDContainer/ArrowAmountShower/ArrowAmountLabel
+@onready var camera: Camera2D = $Camera2D
 
 @export var knockback_decay: float = 150.0
 

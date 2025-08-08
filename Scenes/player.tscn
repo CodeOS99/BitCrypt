@@ -1,10 +1,11 @@
-[gd_scene load_steps=33 format=3 uid="uid://dv5a743p5l2sn"]
+[gd_scene load_steps=34 format=3 uid="uid://dv5a743p5l2sn"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_4nc5l"]
 [ext_resource type="Texture2D" uid="uid://del5817rl3d1s" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/characters/main_mod/elf.png" id="1_egey3"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="3_bds1x"]
 [ext_resource type="Script" path="res://Scripts/player_ui.gd" id="3_rpnea"]
 [ext_resource type="PackedScene" uid="uid://c0sek5ii3jpni" path="res://Scenes/weapons/sword.tscn" id="4_47vgc"]
+[ext_resource type="Script" path="res://Scripts/dramatic_black_bars.gd" id="5_qv2hx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q63t8"]
 atlas = ExtResource("1_egey3")
@@ -450,6 +451,21 @@ value = 100.0
 
 [node name="logContainer" type="VBoxContainer" parent="Camera2D/playerUI/HUDContainer"]
 layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="Camera2D/playerUI"]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_qv2hx")
+
+[node name="ColorRect3" type="ColorRect" parent="Camera2D/playerUI"]
+modulate = Color(1, 1, 1, 0)
+offset_top = 607.0
+offset_right = 1152.0
+offset_bottom = 647.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_qv2hx")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -23.0

@@ -21,3 +21,15 @@ func play_shop_music():
 		curr_bg_player.stop()
 		$shop_music.play()
 		curr_bg_player = $shop_music
+
+func play_boss_bg_music():
+	if $boss_bg_music.playing == false:
+		curr_bg_player.stop()
+		$boss_bg_music.play()
+		curr_bg_player = $boss_bg_music
+
+func play_end_music():
+	if $end_bg_music.playing == false:
+		curr_bg_player.stop()
+		$end_bg_music.play()
+		curr_bg_player = $end_bg_music

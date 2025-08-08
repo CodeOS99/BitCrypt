@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2t8ogx0lcsry"]
+
+[ext_resource type="Script" path="res://Scripts/boss_room_teleporter.gd" id="1_onca5"]
+[ext_resource type="PackedScene" uid="uid://ccqc6h8dcetqs" path="res://Scenes/interact_help_shower.tscn" id="2_8g2re"]
+[ext_resource type="Texture2D" uid="uid://cscdespvurpu5" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/all_unclassified/props.png" id="2_jpft7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7l8yx"]
+atlas = ExtResource("2_jpft7")
+region = Rect2(16, 0, 16, 16)
+
+[node name="boss_room_teleporter" type="Node2D"]
+script = ExtResource("1_onca5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.466667, 0.466667, 1)
+texture = SubResource("AtlasTexture_7l8yx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, -5)
+lifetime = 0.25
+speed_scale = 0.1
+randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(12.08, 1.645)
+gravity = Vector2(0, 1081.07)
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+damping_max = 100.0
+scale_amount_min = 0.5
+color = Color(0, 1, 0, 1)
+
+[node name="interactHelpShower" parent="." instance=ExtResource("2_8g2re")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -16.0
+offset_right = 24.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "!    !"
+
+[connection signal="player_interact" from="interactHelpShower" to="." method="_on_interact_help_shower_player_interact"]

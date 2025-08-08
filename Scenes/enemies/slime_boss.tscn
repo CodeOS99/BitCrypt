@@ -1,0 +1,183 @@
+[gd_scene load_steps=19 format=3 uid="uid://378hidr4ttan"]
+
+[ext_resource type="Script" path="res://Scripts/enemies/slime_boss.gd" id="1_36tfc"]
+[ext_resource type="Texture2D" uid="uid://ddo5kll052nkq" path="res://Assets/SGQ_Enemies_v1_0_0/SGQ_Enemies/bosses/slime_king.png" id="1_ayprw"]
+[ext_resource type="PackedScene" uid="uid://br3cnet7eux2k" path="res://Scenes/damager.tscn" id="3_hmifk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j2ydt"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tunjl"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(0, 256, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qid5"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(48, 256, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7enub"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(96, 256, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6foh"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(144, 256, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i16ly"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(0, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtxae"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(48, 0, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tref"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(0, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4d3w"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(48, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sn00"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(96, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28rpo"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(144, 128, 48, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_10lkb"]
+atlas = ExtResource("1_ayprw")
+region = Rect2(192, 128, 48, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2xh6g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tunjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qid5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7enub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qid5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7enub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qid5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7enub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tunjl")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tunjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qid5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7enub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6foh")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i16ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtxae")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tref")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c4d3w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sn00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28rpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_10lkb")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_steev"]
+radius = 15.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_au8mu"]
+radius = 13.0
+
+[node name="slime_boss" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_36tfc")
+max_health = 150
+health = 150
+speed = 85
+value = 0
+move_frame = Array[int]([2, 3])
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 15.0
+offset_bottom = -7.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_j2ydt")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="FlipParent" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipParent"]
+sprite_frames = SubResource("SpriteFrames_2xh6g")
+animation = &"death"
+autoplay = "jump"
+
+[node name="damager" parent="FlipParent" node_paths=PackedStringArray("parent_body") instance=ExtResource("3_hmifk")]
+damage = 10
+parent_body = NodePath("../..")
+kb = 300
+self_kb = 25
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/damager"]
+position = Vector2(1, 10)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_steev")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_au8mu")
+
+[connection signal="animation_finished" from="FlipParent/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

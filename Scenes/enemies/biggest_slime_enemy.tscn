@@ -1,8 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://ba7alob8kls5o"]
+[gd_scene load_steps=16 format=3 uid="uid://ba7alob8kls5o"]
 
 [ext_resource type="Script" path="res://Scripts/enemies/slime_small.gd" id="1_22o0u"]
 [ext_resource type="Texture2D" uid="uid://12qjiil0qwcg" path="res://Assets/SGQ_Enemies_v1_0_0/SGQ_Enemies/normal/32x32/medium_slime.png" id="2_liuuc"]
-[ext_resource type="PackedScene" uid="uid://4twh1kj7svlx" path="res://Scenes/player_detector.tscn" id="3_xyu4k"]
 [ext_resource type="PackedScene" uid="uid://br3cnet7eux2k" path="res://Scenes/damager.tscn" id="4_rtvnc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_roane"]
@@ -97,9 +96,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_efmes"]
-radius = 16.0
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3nnr1"]
 height = 24.0
 
@@ -116,22 +112,15 @@ max_health = 50
 health = 50
 speed = 90
 value = 20
-move_frame = 3
+move_frame = Array[int]([3])
 
 [node name="FlipParent" type="Node2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="FlipParent"]
 position = Vector2(0, -8)
 sprite_frames = SubResource("SpriteFrames_ry4tf")
-animation = &"hurt"
+animation = &"jump"
 autoplay = "jump"
-frame = 5
-frame_progress = 1.0
-
-[node name="player_detector" parent="FlipParent" instance=ExtResource("3_xyu4k")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/player_detector"]
-shape = SubResource("CircleShape2D_efmes")
 
 [node name="damager" parent="FlipParent" node_paths=PackedStringArray("parent_body") instance=ExtResource("4_rtvnc")]
 damage = 14
