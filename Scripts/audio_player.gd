@@ -2,6 +2,17 @@ extends Node
 
 @export var beepSoundPlayer: AudioStreamPlayer2D
 @export var selectSoundPlayer: AudioStreamPlayer2D
+@onready var signboardPlayer = $signboard
+@onready var bowShoot = $BowShoot
+@onready var slimeJumpPlayer = $Jump
+@onready var slimeDiePlayer = $SlimeDie
+@onready var swordPlayer = $Sword
+@onready var tyrranyMaxPlayer = $TyrranyMax
+@onready var chestPlayer = $Chest
+@onready var hitSound = $Hit
+@onready var arrowHit = $ArrowHit
+@onready var blessingErected = $BlessingErected
+@onready var blessingBlow = $BlessingBlow
 
 var curr_bg_player: AudioStreamPlayer2D
 

@@ -53,7 +53,7 @@ func _on_max_hp_btn_pressed() -> void:
 func _on_atk_dmg_btn_pressed() -> void:
 	Globals.player.incr_dmg(damage_incr_amount)
 	$AtkDmgBtn.cost = floor($AtkDmgBtn.cost * 1.5)
-	$AtkDmgBtn.text = "+%s damage - %s coins".format(damage_incr_amount, $AtkDmgBtn.cost)
+	$AtkDmgBtn.text = "+%s damage - %s coins".format([damage_incr_amount, $AtkDmgBtn.cost])
 	AudioPlayer.selectSoundPlayer.play()
 
 func _on_back_btn_pressed() -> void:

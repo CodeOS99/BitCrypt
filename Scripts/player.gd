@@ -103,6 +103,9 @@ func take_damage(n: int, kb: int, from_pos: Vector2):
 		health_bar.value = curr_health
 		$CollisionShape2D.set_deferred('disabled', true) # i frames
 		can_move = true
+	if curr_health <= 0:
+		Engine.time_scale = 0.1
+		camera.zoom = Vector2(18, 18)
 
 func heal(n: int):
 	curr_health = min(curr_health+n, max_health)
@@ -133,7 +136,7 @@ func update_tyrrany(n: int):
 	tyrrany_bar.value = n
 
 func become_tyrranous():
-	print("oooooooo tyrrany!!!!")
+	AudioPlayer.tyrranyMaxPlayer.play()
 
 func take_kb(kb: int, from_pos: Vector2):
 	var direction = (global_position - from_pos).normalized()
@@ -143,7 +146,7 @@ func incr_max_health(n: int):
 	max_health += n
 	health_bar.max_value = max_health
 
-func incr_damage(n: int):
+func incr_dmg (n: int):
 	Globals.damage += n
 
 func gain_arrows(n: int):

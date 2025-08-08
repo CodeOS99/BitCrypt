@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 		$AnimationPlayer.play(facing_dir + "_" + type)
 	if "atk" in $AnimationPlayer.current_animation and $AnimatedSprite2D.frame == 3:
 		if can_shoot:
+			Globals.player.camera.start_shake(0.5 , 5.0, 5.0)
+			AudioPlayer.bowShoot.play()
 			can_shoot = false
 			var n := arrow.instantiate()
 			n.global_position = $ArrowSpawnPoint.global_position

@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=3 uid="uid://dv5a743p5l2sn"]
+[gd_scene load_steps=35 format=3 uid="uid://dv5a743p5l2sn"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_4nc5l"]
 [ext_resource type="Texture2D" uid="uid://del5817rl3d1s" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/characters/main_mod/elf.png" id="1_egey3"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="3_7470c"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="3_bds1x"]
 [ext_resource type="Script" path="res://Scripts/player_ui.gd" id="3_rpnea"]
 [ext_resource type="Script" path="res://Scripts/dramatic_black_bars.gd" id="5_qv2hx"]
@@ -365,6 +366,7 @@ bg_color = Color(0.368627, 0.521569, 0.286275, 1)
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 2
 script = ExtResource("1_4nc5l")
+knockback_decay = null
 
 [node name="childParent" type="Node2D" parent="."]
 
@@ -389,6 +391,7 @@ limit_bottom = 288
 limit_smoothed = true
 position_smoothing_speed = 0.0
 editor_draw_limits = true
+script = ExtResource("3_7470c")
 
 [node name="playerUI" type="CanvasLayer" parent="Camera2D"]
 process_mode = 3
@@ -396,6 +399,7 @@ layer = 100
 script = ExtResource("3_rpnea")
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/playerUI"]
+visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_ngqfk")
 anchors_preset = 15

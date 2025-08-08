@@ -24,5 +24,7 @@ func _process(delta: float) -> void:
 			type = "atk"
 		
 		$AnimationPlayer.play(facing_dir + "_" + type)
+		if type == "atk":
+			AudioPlayer.swordPlayer.play()
 	else:
 		$damager.active = true

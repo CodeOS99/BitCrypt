@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1vb72tt5chin"]
+[gd_scene load_steps=20 format=3 uid="uid://1vb72tt5chin"]
 
 [ext_resource type="Script" path="res://Scripts/audio_player.gd" id="2_68ebu"]
 [ext_resource type="AudioStream" uid="uid://txmed4tdggr7" path="res://Assets/Audio/music/15. Rush Point.mp3" id="2_m3pq8"]
@@ -8,6 +8,17 @@
 [ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/sfx/select_button.wav" id="6_m5bsn"]
 [ext_resource type="AudioStream" uid="uid://d1w77h812ewqn" path="res://Assets/Audio/music/05. Last Mission.mp3" id="7_w10ba"]
 [ext_resource type="AudioStream" uid="uid://crnawe1ulojmt" path="res://Assets/Audio/music/16. Truth.mp3" id="8_476su"]
+[ext_resource type="AudioStream" uid="uid://5q1aeucpmjyq" path="res://Assets/Audio/sfx/signboard.wav" id="9_c08cr"]
+[ext_resource type="AudioStream" uid="uid://cqttj8b7t0ih1" path="res://Assets/Audio/sfx/bowShoot.wav" id="10_jf4mb"]
+[ext_resource type="AudioStream" uid="uid://dakjwx46ig8up" path="res://Assets/Audio/sfx/Jump20.wav" id="11_50tli"]
+[ext_resource type="AudioStream" uid="uid://yyqveckhcc50" path="res://Assets/Audio/sfx/slimeDie.wav" id="12_mfpjh"]
+[ext_resource type="AudioStream" uid="uid://cfcjqs4yeeeqt" path="res://Assets/Audio/sfx/sword.wav" id="13_1vx3n"]
+[ext_resource type="AudioStream" uid="uid://bumnbwn2tp6xw" path="res://Assets/Audio/sfx/tyrranyMax.wav" id="14_rsaxu"]
+[ext_resource type="AudioStream" uid="uid://bx56036iqewde" path="res://Assets/Audio/sfx/chest.wav" id="15_lr7k8"]
+[ext_resource type="AudioStream" uid="uid://cllq70u7h0ovq" path="res://Assets/Audio/sfx/hit.wav" id="16_svcvj"]
+[ext_resource type="AudioStream" uid="uid://b8qdnp2f5d2mt" path="res://Assets/Audio/sfx/arrowHit.wav" id="17_yhdlm"]
+[ext_resource type="AudioStream" uid="uid://480pphv8e7wg" path="res://Assets/Audio/sfx/blessingErected.wav" id="18_lgn3x"]
+[ext_resource type="AudioStream" uid="uid://bgbgwxc3bnfjd" path="res://Assets/Audio/sfx/blessingBlow.wav" id="19_lkeah"]
 
 [node name="Node" type="Node" node_paths=PackedStringArray("beepSoundPlayer", "selectSoundPlayer")]
 process_mode = 3
@@ -35,3 +46,37 @@ stream = ExtResource("7_w10ba")
 
 [node name="end_bg_music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_476su")
+
+[node name="signboard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_c08cr")
+
+[node name="BowShoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_jf4mb")
+
+[node name="Jump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_50tli")
+volume_db = -8.107
+
+[node name="SlimeDie" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_mfpjh")
+
+[node name="Sword" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_1vx3n")
+
+[node name="TyrranyMax" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_rsaxu")
+
+[node name="Chest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_lr7k8")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_svcvj")
+
+[node name="ArrowHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_yhdlm")
+
+[node name="BlessingErected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_lgn3x")
+
+[node name="BlessingBlow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_lkeah")

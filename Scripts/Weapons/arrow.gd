@@ -37,6 +37,7 @@ func _on_damager_hit(body: Node2D) -> void:
 		global_position = to_local(body.global_position)
 		$damager.queue_free()
 		$CollisionShape2D.queue_free()
+		AudioPlayer.arrowHit.play()
 		
 		var t = get_tree().create_tween()
 		t.tween_property(self, 'modulate', Color(1.0, 1.0, 1.0, 0), 5.0)

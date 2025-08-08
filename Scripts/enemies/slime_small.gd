@@ -11,6 +11,8 @@ extends CharacterBody2D
 var knockback_velocity: Vector2 = Vector2.ZERO
 var move_velocity: Vector2 = Vector2.ZERO
 
+var toPlaySound = true
+
 func _ready() -> void:
 	$ProgressBar.max_value = max_health
 	$ProgressBar.value = health
@@ -30,6 +32,11 @@ func _physics_process(delta: float) -> void:
 	if $FlipParent/AnimatedSprite2D.animation == "jump" and $FlipParent/AnimatedSprite2D.frame in move_frame:
 		var dir_to_player = (Globals.player_body.global_position - global_position).normalized()
 		move_velocity += dir_to_player * speed
+		if toPlaySound:
+			AudioPlayer.slimeJumpPlayer.play()
+			toPlaySound = false
+	else:
+		toPlaySound = true
 
 	velocity = move_velocity
 	move_and_slide()
@@ -56,6 +63,7 @@ func take_damage(n: int, kb: int, from_pos):
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if $FlipParent/AnimatedSprite2D.animation == "death":
+		AudioPlayer.slimeDiePlayer.play()
 		var t = get_tree().create_tween()
 		t.tween_property($FlipParent/AnimatedSprite2D, "modulate", Color(1, 1, 1, 0), 1)
 		t.tween_callback(die)
