@@ -8,6 +8,7 @@ var direction: Vector2
 var can_hit_player
 
 func _ready():
+	$damager.parent_body = Globals.player
 	if facing_dir == "up":
 		direction = Vector2.UP
 	elif facing_dir == "left":

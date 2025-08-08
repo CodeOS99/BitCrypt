@@ -27,12 +27,10 @@ func _on_body_entered(body: Node2D) -> void:
 func _should_damage(body: Node2D) -> bool:
 	if not active or body == parent_body or body == null or parent_body == null:
 		return false
-
 	var parent_is_player := parent_body.is_in_group("player")
 	var parent_is_enemy := parent_body.is_in_group("enemy")
 	var body_is_player := body.is_in_group("player")
 	var body_is_enemy := body.is_in_group("enemy")
-
 	return (parent_is_player and body_is_enemy) or (parent_is_enemy and body_is_player)
 
 func _deal_damage(body: Node2D) -> void:
@@ -44,5 +42,5 @@ func _deal_damage(body: Node2D) -> void:
 
 	if parent_body.has_method("take_kb"):
 		parent_body.take_kb(self_kb, body.global_position)
-
+	print("emitting hit")
 	hit.emit(body)

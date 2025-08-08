@@ -27,7 +27,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xpd7m"]
-size = Vector2(15, 5)
+size = Vector2(24, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iwxsh"]
 size = Vector2(11, 1)
@@ -40,16 +40,13 @@ sprite_frames = SubResource("SpriteFrames_kb852")
 autoplay = "default"
 
 [node name="damager" parent="." node_paths=PackedStringArray("parent_body") instance=ExtResource("2_73wat")]
-visible = false
 damage = 4
 parent_body = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="damager"]
-position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_xpd7m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_iwxsh")
 

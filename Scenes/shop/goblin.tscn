@@ -208,10 +208,6 @@ grow_vertical = 2
 size_flags_horizontal = 4
 alignment = 1
 script = ExtResource("5_6jaxr")
-heal_amount = null
-arrow_amount = null
-max_health_incr_amount = null
-damage_incr_amount = null
 
 [node name="HealBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_l0nr4")]
 layout_mode = 2

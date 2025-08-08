@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/damager.gd" id="1_jhl35"]
 
-[node name="damager" type="Area2D"]
+[node name="damager" type="Area2D" groups=["player"]]
 script = ExtResource("1_jhl35")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

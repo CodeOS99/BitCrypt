@@ -9,6 +9,7 @@ atlas = ExtResource("2_jpft7")
 region = Rect2(16, 0, 16, 16)
 
 [node name="boss_room_teleporter" type="Node2D"]
+visible = false
 script = ExtResource("1_onca5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

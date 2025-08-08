@@ -34,6 +34,7 @@ func _on_bow_btn_pressed() -> void:
 	AudioPlayer.selectSoundPlayer.play()
 
 func _on_arrow_btn_pressed() -> void:
+	print(arrow_amount)
 	Globals.player.gain_arrows(arrow_amount)
 	Globals.player.buy_of($ArrowBtn.cost)
 	AudioPlayer.selectSoundPlayer.play()

@@ -119,6 +119,7 @@ radius = 4.0
 
 [node name="slime_enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_481v3")
+value = 100
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -10.0

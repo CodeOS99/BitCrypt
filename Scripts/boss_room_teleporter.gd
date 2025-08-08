@@ -2,6 +2,10 @@ extends Node2D
 
 var boss_room = preload("res://Scenes/boss_room.tscn")
 
+func _process(delta: float) -> void:
+	if Globals.tyrrany_over_the_blight_of_flesh == Globals.max_tyrrany:
+		self.visible = true
+
 func _on_interact_help_shower_player_interact() -> void:
 	spawn_room()
 
