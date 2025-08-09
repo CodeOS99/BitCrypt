@@ -15,7 +15,7 @@ var enemy_pool = [
 	},
 	{
 		scene = preload("res://Scenes/enemies/biggest_slime_enemy.tscn"),
-		power = 8
+		power = 7
 	}
 ]
 

@@ -54,34 +54,34 @@ func handleMovement(delta: float):
 		move_and_slide()
 		return
 
-	move_velocity = Vector2.ZERO
-
+	# Apply knockback decay
 	if knockback_velocity.length() > 0.1:
-		move_velocity += knockback_velocity
 		knockback_velocity = knockback_velocity.move_toward(Vector2.ZERO, knockback_decay * delta)
 	else:
 		knockback_velocity = Vector2.ZERO
 
+	# Movement input
 	var input_vector := Vector2(
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
-	)
+	).normalized()
 
-	if input_vector.length() > 0:
-		input_vector = input_vector.normalized()
-		if input_vector.x > 0:
-			child_parent.scale.x = abs(child_parent.scale.x)
-		elif input_vector.x < 0:
-			child_parent.scale.x = -abs(child_parent.scale.x)
-		move_velocity += input_vector * current_speed
+	move_velocity = input_vector * current_speed
 
-		if not is_hurting:
-			animation_player.play("walk")
-	else:
-		if not is_hurting and animation_player.assigned_animation != "idle":
-			animation_player.play("idle")
+	# Flip sprite if moving horizontally
+	if input_vector.x != 0:
+		child_parent.scale.x = abs(child_parent.scale.x) * sign(input_vector.x)
 
-	velocity = move_velocity
+	# Animation
+	if input_vector.length() > 0 and not is_hurting:
+		animation_player.play("walk")
+	elif not is_hurting and animation_player.assigned_animation != "idle":
+		animation_player.play("idle")
+
+	# Combine movement and knockback
+	velocity = move_velocity + knockback_velocity
+
+	# Let Godot handle sliding and collision detection
 	move_and_slide()
 
 func add_log(text):
@@ -107,6 +107,7 @@ func take_damage(n: int, kb: int, from_pos: Vector2):
 		Engine.time_scale = 0.1
 		camera.zoom = Vector2(18, 18)
 		animation_player.play("dead")
+		AudioPlayer.play_game_over_music()
 		$Camera2D/playerUI/redOverlay.visible = true
 
 func heal(n: int):
@@ -131,9 +132,9 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "hurt":
 		is_hurting = false
 		$CollisionShape2D.disabled = false
-	elif anim_name == "death":
-		pass
-
+	elif anim_name == "dead":
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		get_parent().queue_free()
 func update_tyrrany(n: int):
 	tyrrany_bar.value = n
 

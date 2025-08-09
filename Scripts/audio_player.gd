@@ -16,31 +16,27 @@ extends Node
 
 var curr_bg_player: AudioStreamPlayer2D
 
+func play_music(player: AudioStreamPlayer2D):
+	if curr_bg_player and curr_bg_player != player:
+		curr_bg_player.stop()
+	if not player.playing:
+		player.play()
+	curr_bg_player = player
+
 func playtitle_screen_music():
-	if $title_screen_music.playing == false:
-		$title_screen_music.play()
-		curr_bg_player = $title_screen_music
+	play_music($title_screen_music)
 
 func play_game_music():
-	if $game_music.playing == false:
-		curr_bg_player.stop()
-		$game_music.play()
-		curr_bg_player = $game_music
+	play_music($game_music)
 
 func play_shop_music():
-	if $shop_music.playing == false:
-		curr_bg_player.stop()
-		$shop_music.play()
-		curr_bg_player = $shop_music
+	play_music($shop_music)
 
 func play_boss_bg_music():
-	if $boss_bg_music.playing == false:
-		curr_bg_player.stop()
-		$boss_bg_music.play()
-		curr_bg_player = $boss_bg_music
+	play_music($boss_bg_music)
 
 func play_end_music():
-	if $end_bg_music.playing == false:
-		curr_bg_player.stop()
-		$end_bg_music.play()
-		curr_bg_player = $end_bg_music
+	play_music($end_bg_music)
+
+func play_game_over_music():
+	play_music($game_over_bg_music)

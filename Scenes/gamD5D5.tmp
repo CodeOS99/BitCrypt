@@ -1,0 +1,79 @@
+[gd_scene load_steps=7 format=3 uid="uid://bwhc8jrd2xg0b"]
+
+[ext_resource type="Script" path="res://Scripts/keyboard_btn_container.gd" id="1_6k10y"]
+[ext_resource type="PackedScene" uid="uid://bwtvmj4k6uvwj" path="res://Scenes/keyboard_btn.tscn" id="2_1i6li"]
+[ext_resource type="AudioStream" uid="uid://b54e31absucor" path="res://Assets/Audio/sfx/option_beep.wav" id="3_t5yjr"]
+[ext_resource type="AudioStream" uid="uid://kc07wigiwtsm" path="res://Assets/Audio/sfx/select_button.wav" id="4_3ecxe"]
+[ext_resource type="PackedScene" uid="uid://blsb27aml1tjv" path="res://Scenes/crt_shader_rect.tscn" id="5_20e3d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b5lcm"]
+bg_color = Color(0.188235, 0.384314, 0.188235, 1)
+
+[node name="gameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b5lcm")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_right = 400.0
+offset_bottom = 137.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.0588235, 0.219608, 0.0588235, 1)
+theme_override_colors/font_shadow_color = Color(0.607843, 0.737255, 0.0588235, 1)
+theme_override_font_sizes/font_size = 100
+text = "game over"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -144.5
+offset_bottom = 144.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+script = ExtResource("1_6k10y")
+
+[node name="playbtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_1i6li")]
+layout_mode = 2
+text = "PLAY again"
+
+[node name="creditsBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_1i6li")]
+layout_mode = 2
+text = "CREDITS again?"
+
+[node name="quitBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("2_1i6li")]
+layout_mode = 2
+text = "QUIT again??"
+
+[node name="beepSound" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("3_t5yjr")
+
+[node name="selectSound" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource("4_3ecxe")
+
+[node name="ColorRect" parent="CanvasLayer" instance=ExtResource("5_20e3d")]
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/playbtn" to="CanvasLayer/VBoxContainer" method="_on_playbtn_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/creditsBtn" to="CanvasLayer/VBoxContainer" method="_on_credits_btn_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/quitBtn" to="CanvasLayer/VBoxContainer" method="_on_quit_btn_pressed"]

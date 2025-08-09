@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="RoomData" load_steps=3 format=3 uid="uid://bnmgksxi5e5jc"]
+
+[ext_resource type="Script" path="res://Scripts/RoomData.gd" id="1_k8hui"]
+[ext_resource type="PackedScene" uid="uid://d2hcqf06d5blg" path="res://Scenes/rooms/combat_library.tscn" id="1_ovhr2"]
+
+[resource]
+script = ExtResource("1_k8hui")
+scene = ExtResource("1_ovhr2")
+curr_room_type = 0
+has_interact_openings = false
+excluded_openings = Array[Vector2i]([])

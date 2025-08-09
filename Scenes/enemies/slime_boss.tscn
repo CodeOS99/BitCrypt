@@ -167,7 +167,6 @@ autoplay = "jump"
 [node name="damager" parent="FlipParent" node_paths=PackedStringArray("parent_body") instance=ExtResource("3_hmifk")]
 damage = 10
 parent_body = NodePath("../..")
-kb = 300
 self_kb = 25
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FlipParent/damager"]
