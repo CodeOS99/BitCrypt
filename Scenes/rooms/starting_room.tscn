@@ -597,7 +597,7 @@ position = Vector2(288, 288)
 
 [node name="signboard" parent="." instance=ExtResource("5_efyh1")]
 position = Vector2(168, 112)
-text_on_label = "ok you can go through the door now. its implemented!"
+text_on_label = "welcome to the ever-changing labyrinth of doom :D"
 
 [node name="player" parent="." instance=ExtResource("5_0db63")]
 position = Vector2(146, 120)
