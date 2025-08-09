@@ -16,6 +16,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 		$FlipParent/AnimatedSprite2D.play("jump")
 
 func die():
-	print("printing")
-	print("Scene change result: ", get_tree().change_scene_to_file("res://Scenes/win.tscn"))
+	Globals.player.transition_to_new_room()
+	await Globals.player.can_transition_now
+	get_tree().change_scene_to_file("res://Scenes/win.tscn")
 	get_parent().queue_free()

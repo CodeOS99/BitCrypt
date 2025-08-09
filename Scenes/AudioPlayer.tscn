@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://1vb72tt5chin"]
+[gd_scene load_steps=22 format=3 uid="uid://1vb72tt5chin"]
 
 [ext_resource type="Script" path="res://Scripts/audio_player.gd" id="2_68ebu"]
 [ext_resource type="AudioStream" uid="uid://txmed4tdggr7" path="res://Assets/Audio/music/15. Rush Point.mp3" id="2_m3pq8"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://b8qdnp2f5d2mt" path="res://Assets/Audio/sfx/arrowHit.wav" id="17_yhdlm"]
 [ext_resource type="AudioStream" uid="uid://480pphv8e7wg" path="res://Assets/Audio/sfx/blessingErected.wav" id="18_lgn3x"]
 [ext_resource type="AudioStream" uid="uid://bgbgwxc3bnfjd" path="res://Assets/Audio/sfx/blessingBlow.wav" id="19_lkeah"]
+[ext_resource type="AudioStream" uid="uid://bn3d1mhhvpkk8" path="res://Assets/Audio/sfx/transition.wav" id="21_uq4uw"]
 
 [node name="Node" type="Node" node_paths=PackedStringArray("beepSoundPlayer", "selectSoundPlayer")]
 process_mode = 3
@@ -85,3 +86,6 @@ stream = ExtResource("18_lgn3x")
 
 [node name="BlessingBlow" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_lkeah")
+
+[node name="Transition" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_uq4uw")

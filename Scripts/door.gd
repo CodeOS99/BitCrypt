@@ -85,6 +85,8 @@ func spawn_room():
 	if travelled_once:
 		return
 	travelled_once = true
+	Globals.player.transition_to_new_room()
+	await Globals.player.can_transition_now
 	var room = create_room()
 	add_room_to_scene(room)
 	await get_tree().process_frame

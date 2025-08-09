@@ -13,6 +13,7 @@ extends Node
 @onready var arrowHit = $ArrowHit
 @onready var blessingErected = $BlessingErected
 @onready var blessingBlow = $BlessingBlow
+@onready var transitionPlayer = $Transition
 
 var curr_bg_player: AudioStreamPlayer2D
 

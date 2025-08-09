@@ -37,6 +37,7 @@ func _deal_damage(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		AudioPlayer.hitSound.play()
 		Globals.player.camera.start_shake(0.5 , 5.0, 5.0)
+
 	if body.has_method("take_damage"):
 		var total_damage := damage
 		if parent_body.is_in_group("player"):

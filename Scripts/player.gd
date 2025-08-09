@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+signal can_transition_now
+
 const WALK_SPEED: float = 100.0
 const RUN_SPEED: float = 200.0
 
@@ -16,6 +18,7 @@ var can_move: bool = true
 @onready var weapon_parent_node: Node2D = $weapon
 @onready var arrow_amount_label: Label = $Camera2D/playerUI/HUDContainer/ArrowAmountShower/ArrowAmountLabel
 @onready var camera: Camera2D = $Camera2D
+@onready var transitioner: CanvasLayer = $Camera2D/playerUI/transitioner
 
 @export var knockback_decay: float = 150.0
 
@@ -155,3 +158,8 @@ func incr_dmg (n: int):
 func gain_arrows(n: int):
 	Globals.arrows += n
 	arrow_amount_label.text = str(Globals.arrows)
+
+func transition_to_new_room():
+	transitioner.transition()
+	await transitioner.transitioned
+	can_transition_now.emit()
