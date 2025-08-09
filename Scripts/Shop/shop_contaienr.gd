@@ -46,14 +46,22 @@ func _on_sword_btn_pressed() -> void:
 
 func _on_max_hp_btn_pressed() -> void:
 	Globals.player.incr_max_health(max_health_incr_amount)
+	Globals.player.buy_of($MaxHPBtn.cost)
 	$MaxHPBtn.cost = floor($MaxHPBtn.cost * 1.5)
-	$MaxHPBtn.text = "+%s max hp - %s coins".format(max_health_incr_amount, $MaxHPBtn.cost)
+	$MaxHPBtn.text = "+{hp} max hp - {cost} coins".format({
+		"hp": max_health_incr_amount,
+		"cost": $MaxHPBtn.cost
+	})
 	AudioPlayer.selectSoundPlayer.play()
 
 func _on_atk_dmg_btn_pressed() -> void:
 	Globals.player.incr_dmg(damage_incr_amount)
+	Globals.player.buy_of($AtkDmgBtn.cost)
 	$AtkDmgBtn.cost = floor($AtkDmgBtn.cost * 1.5)
-	$AtkDmgBtn.text = "+%s damage - %s coins".format([damage_incr_amount, $AtkDmgBtn.cost])
+	$AtkDmgBtn.text = "+ {damage} damage - {cost} coins".format({
+		"damage": damage_incr_amount,
+		"cost": $AtkDmgBtn.cost
+	})
 	AudioPlayer.selectSoundPlayer.play()
 
 func _on_back_btn_pressed() -> void:
@@ -63,3 +71,4 @@ func _on_back_btn_pressed() -> void:
 
 func _on_blessings_btn_pressed() -> void:
 	Globals.has_goblin_blessing = true
+	Globals.player.buy_of($BlessingsBtn.cost)

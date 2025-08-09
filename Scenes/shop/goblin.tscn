@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://y1gx7qhdfl2m"]
+[gd_scene load_steps=22 format=3 uid="uid://y1gx7qhdfl2m"]
 
 [ext_resource type="Script" path="res://Scripts/Shop/goblin.gd" id="1_7jx3n"]
 [ext_resource type="Texture2D" uid="uid://b54w50eqwggq0" path="res://Assets/SGQ_Enemies_v1_0_0/SGQ_Enemies/normal/16x16/goblin.png" id="1_ba5jv"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" path="res://Scripts/Shop/shop_contaienr.gd" id="5_6jaxr"]
 [ext_resource type="PackedScene" uid="uid://bwtvmj4k6uvwj" path="res://Scenes/keyboard_btn.tscn" id="5_l0nr4"]
 [ext_resource type="Script" path="res://Scripts/Shop/shop_button.gd" id="7_2kt0q"]
+[ext_resource type="Script" path="res://Scripts/Shop/blessing_buy_button.gd" id="8_03evf"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="8_x0sss"]
+[ext_resource type="Script" path="res://Scripts/Shop/coin_label.gd" id="10_74jk5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlawi"]
 atlas = ExtResource("1_ba5jv")
@@ -248,8 +250,7 @@ cost = 25
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Goblin's Blessings - 100 coins"
-script = ExtResource("7_2kt0q")
-cost = 25
+script = ExtResource("8_03evf")
 
 [node name="BackBtn" parent="CanvasLayer/VBoxContainer" instance=ExtResource("5_l0nr4")]
 layout_mode = 2
@@ -263,6 +264,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 48.0
+offset_top = 587.0
+offset_right = 176.0
+offset_bottom = 607.0
+text = "COINS - 0"
+script = ExtResource("10_74jk5")
 
 [connection signal="player_interact" from="interactHelpShower" to="." method="_on_interact_help_shower_player_interact"]
 [connection signal="body_entered" from="interactHelpShower/Area2D" to="interactHelpShower" method="_on_area_2d_body_entered"]

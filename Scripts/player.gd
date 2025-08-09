@@ -106,6 +106,8 @@ func take_damage(n: int, kb: int, from_pos: Vector2):
 	if curr_health <= 0:
 		Engine.time_scale = 0.1
 		camera.zoom = Vector2(18, 18)
+		animation_player.play("dead")
+		$Camera2D/playerUI/redOverlay.visible = true
 
 func heal(n: int):
 	curr_health = min(curr_health+n, max_health)

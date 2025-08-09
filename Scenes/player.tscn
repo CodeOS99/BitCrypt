@@ -366,7 +366,6 @@ bg_color = Color(0.368627, 0.521569, 0.286275, 1)
 [node name="player" type="CharacterBody2D" groups=["player"]]
 z_index = 2
 script = ExtResource("1_4nc5l")
-knockback_decay = null
 
 [node name="childParent" type="Node2D" parent="."]
 
@@ -399,7 +398,6 @@ layer = 100
 script = ExtResource("3_rpnea")
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D/playerUI"]
-visible = false
 z_index = 10
 material = SubResource("ShaderMaterial_ngqfk")
 anchors_preset = 15
@@ -470,6 +468,12 @@ offset_right = 1152.0
 offset_bottom = 647.0
 color = Color(0, 0, 0, 1)
 script = ExtResource("5_qv2hx")
+
+[node name="redOverlay" type="ColorRect" parent="Camera2D/playerUI"]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(1, 0, 0, 0.14902)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -23.0
