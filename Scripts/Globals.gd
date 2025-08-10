@@ -34,21 +34,15 @@ static func fire_arrow(n: int):
 	player.arrow_amount_label.text = str(arrows)
 
 static func load_room_data_from_directory() -> void:
-	var room_data_path: String = "res://Scripts/Resources/rooms/"
-	var dir = DirAccess.open(room_data_path)
-	if dir == null:
-		push_error("Failed to open directory: %s" % room_data_path)
-		return
+	# Brute-force approach: manually specify every room resource
+	var manual_paths = [
+		"res://Scripts/Resources/rooms/combat_library.tres",
+		"res://Scripts/Resources/rooms/fire_real_treasure.tres",
+		"res://Scripts/Resources/rooms/first_treasure.tres",
+		"res://Scripts/Resources/rooms/quarry_one.tres"
+	]
 
-	dir.list_dir_begin()
-	var file_name = dir.get_next()
-
-	while file_name != "":
-		if not dir.current_is_dir() and file_name.ends_with(".tres"):
-			var file_path = room_data_path + file_name
-			var data = load(file_path) as RoomData
-			if data != null:
-				room_data.append(data)
-		file_name = dir.get_next()
-
-	dir.list_dir_end()
+	for file_path in manual_paths:
+		var data = load(file_path) as RoomData
+		if data != null:
+			room_data.append(data)

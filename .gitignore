@@ -5,3 +5,6 @@
 # Addon specific beause I'm dense
 /addons/
 /images/
+
+/build/
+/build.zip

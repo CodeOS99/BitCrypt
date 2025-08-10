@@ -1,23 +1,156 @@
-[gd_scene load_steps=57 format=4 uid="uid://dkbtc1s8aheh"]
+[gd_scene load_steps=77 format=4 uid="uid://dkbtc1s8aheh"]
 
 [ext_resource type="Texture2D" uid="uid://ddceastutov1i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/surground.png" id="1_ev7l7"]
 [ext_resource type="Script" path="res://Scripts/win.gd" id="1_nxk2v"]
 [ext_resource type="Texture2D" uid="uid://b36xd20ietj8i" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/grounds.png" id="2_qt5pk"]
+[ext_resource type="Script" path="res://Scripts/Shop/goblin.gd" id="2_xsy70"]
+[ext_resource type="Texture2D" uid="uid://b54w50eqwggq0" path="res://Assets/SGQ_Enemies_v1_0_0/SGQ_Enemies/normal/16x16/goblin.png" id="3_ackib"]
 [ext_resource type="Texture2D" uid="uid://bgydfbco1vic7" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/grounds_and_walls/walls.png" id="3_y8t1x"]
+[ext_resource type="Texture2D" uid="uid://cscdespvurpu5" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/all_unclassified/props.png" id="4_chjpq"]
 [ext_resource type="Texture2D" uid="uid://dt71wluio1kip" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/props.png" id="4_ov1v7"]
 [ext_resource type="Texture2D" uid="uid://but4hykfoatik" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/minecart_and_rails.png" id="5_tlgll"]
+[ext_resource type="Script" path="res://Scripts/interact_help_shower.gd" id="5_ujl8p"]
 [ext_resource type="Texture2D" uid="uid://dmm2vau0qf2qo" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/props/animated_props.png" id="6_25b7l"]
+[ext_resource type="Script" path="res://Scripts/goblin_end.gd" id="6_gt1t4"]
+[ext_resource type="PackedScene" uid="uid://bwtvmj4k6uvwj" path="res://Scenes/keyboard_btn.tscn" id="7_lg0kb"]
 [ext_resource type="PackedScene" uid="uid://cpbmwtgb5osq7" path="res://Scenes/props/campfire.tscn" id="7_vujvk"]
+[ext_resource type="Script" path="res://Scripts/Shop/shop_button.gd" id="8_j7w72"]
 [ext_resource type="PackedScene" uid="uid://canfxv7bxkkok" path="res://Scenes/props/descending_ladder.tscn" id="8_ks13l"]
 [ext_resource type="PackedScene" uid="uid://cik3ovrlbe16j" path="res://Scenes/props/chest.tscn" id="9_ck28q"]
+[ext_resource type="Script" path="res://Scripts/Shop/blessing_buy_button.gd" id="9_tsox0"]
 [ext_resource type="PackedScene" uid="uid://bekvs4es0pyxr" path="res://Scenes/props/signboard.tscn" id="10_45in8"]
+[ext_resource type="Script" path="res://Scripts/Shop/coin_label.gd" id="11_wxvav"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="12_10tp7"]
 [ext_resource type="Texture2D" uid="uid://del5817rl3d1s" path="res://Assets/SGQ_Dungeon_v1_1_1/SGQ_Dungeon/characters/main_mod/elf.png" id="13_b7apd"]
 [ext_resource type="Script" path="res://Scripts/player_ui.gd" id="14_vtk6c"]
 [ext_resource type="Shader" path="res://Shaders/crt.gdshader" id="15_1xy0j"]
 [ext_resource type="Script" path="res://Scripts/dramatic_black_bars.gd" id="16_502ju"]
 [ext_resource type="PackedScene" uid="uid://c0sek5ii3jpni" path="res://Scenes/weapons/sword.tscn" id="17_57dna"]
-[ext_resource type="PackedScene" uid="uid://y1gx7qhdfl2m" path="res://Scenes/shop/goblin.tscn" id="18_jdecy"]
+[ext_resource type="Script" path="res://Scripts/camera_2d.gd" id="24_ylyjg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlawi"]
+atlas = ExtResource("3_ackib")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cjk0g"]
+atlas = ExtResource("3_ackib")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kanxf"]
+atlas = ExtResource("3_ackib")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a10m6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlawi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cjk0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kanxf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ldtx"]
+atlas = ExtResource("4_chjpq")
+region = Rect2(192, 0, 32, 16)
+
+[sub_resource type="Animation" id="Animation_v4rpm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nq2vj"]
+resource_name = "textupdown"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-2, -16), Vector2(-2, -26), Vector2(-2, -16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dba1o"]
+_data = {
+"RESET": SubResource("Animation_v4rpm"),
+"textupdown": SubResource("Animation_nq2vj")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1fsoj"]
+radius = 19.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2hfco"]
+bg_color = Color(0.188235, 0.384314, 0.188235, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5y6ug"]
+shader = ExtResource("15_1xy0j")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.4
+shader_parameter/scanlines_width = 0.25
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = true
+shader_parameter/roll = true
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 15.0
+shader_parameter/roll_variation = 0.1
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.097
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.0
+shader_parameter/vignette_opacity = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l3ou2"]
 texture = ExtResource("1_ev7l7")
@@ -1179,8 +1312,146 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_nxk2v")
 
-[node name="Goblin" parent="." instance=ExtResource("18_jdecy")]
+[node name="Goblin" type="Node2D" parent="."]
+z_index = 2
 position = Vector2(304, 144)
+script = ExtResource("2_xsy70")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Goblin"]
+sprite_frames = SubResource("SpriteFrames_a10m6")
+frame_progress = 0.138246
+
+[node name="Sprite2D" type="Sprite2D" parent="Goblin"]
+position = Vector2(0, 10)
+texture = SubResource("AtlasTexture_5ldtx")
+
+[node name="interactHelpShower" type="Node2D" parent="Goblin"]
+position = Vector2(0, 6)
+script = ExtResource("5_ujl8p")
+
+[node name="Label" type="Label" parent="Goblin/interactHelpShower"]
+offset_left = -2.0
+offset_top = -16.0
+offset_right = 94.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "E"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Goblin/interactHelpShower"]
+libraries = {
+"": SubResource("AnimationLibrary_dba1o")
+}
+autoplay = "textupdown"
+
+[node name="Area2D" type="Area2D" parent="Goblin/interactHelpShower"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin/interactHelpShower/Area2D"]
+shape = SubResource("CircleShape2D_1fsoj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Goblin"]
+process_mode = 2
+layer = 3
+visible = false
+
+[node name="Panel" type="Panel" parent="Goblin/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2hfco")
+
+[node name="Label" type="Label" parent="Goblin/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -528.0
+offset_right = 528.0
+offset_bottom = 80.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 64
+text = "GOBLIN'S TREASURE"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Goblin/CanvasLayer"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -462.5
+offset_right = 462.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+script = ExtResource("6_gt1t4")
+
+[node name="HealBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+text = "heal 10 hp - 0 coins"
+script = ExtResource("8_j7w72")
+cost = 0
+
+[node name="BowBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+text = "BUY A BOW - 0 coins"
+script = ExtResource("8_j7w72")
+cost = 0
+
+[node name="ArrowBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+text = "buy 10 arrows - 0 coins"
+script = ExtResource("8_j7w72")
+cost = 0
+
+[node name="SwordBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+text = "buy a sword - 0 coins"
+script = ExtResource("8_j7w72")
+cost = 0
+
+[node name="MaxHPBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+text = "+10 max hp - 0 coins"
+script = ExtResource("8_j7w72")
+cost = 0
+
+[node name="AtkDmgBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+text = "+5 damage - 0 coins"
+script = ExtResource("8_j7w72")
+cost = 0
+
+[node name="BlessingsBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Goblin's Blessings - 0 coins"
+script = ExtResource("9_tsox0")
+cost = 0
+
+[node name="BackBtn" parent="Goblin/CanvasLayer/VBoxContainer" instance=ExtResource("7_lg0kb")]
+layout_mode = 2
+text = "Back"
+
+[node name="ColorRect" type="ColorRect" parent="Goblin/CanvasLayer"]
+z_index = 10
+material = SubResource("ShaderMaterial_5y6ug")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label2" type="Label" parent="Goblin/CanvasLayer"]
+offset_left = 48.0
+offset_top = 587.0
+offset_right = 176.0
+offset_bottom = 607.0
+text = "COINS - 0"
+script = ExtResource("11_wxvav")
 
 [node name="surground" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_64pu0")
@@ -1245,6 +1516,7 @@ limit_bottom = 431
 limit_smoothed = true
 position_smoothing_speed = 0.0
 editor_draw_limits = true
+script = ExtResource("24_ylyjg")
 
 [node name="playerUI" type="CanvasLayer" parent="player/Camera2D"]
 process_mode = 3
@@ -1337,4 +1609,15 @@ show_percentage = false
 
 [node name="Sword" parent="player/weapon" instance=ExtResource("17_57dna")]
 
+[connection signal="player_interact" from="Goblin/interactHelpShower" to="Goblin" method="_on_interact_help_shower_player_interact"]
+[connection signal="body_entered" from="Goblin/interactHelpShower/Area2D" to="Goblin/interactHelpShower" method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Goblin/interactHelpShower/Area2D" to="Goblin/interactHelpShower" method="_on_area_2d_body_exited"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/HealBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_heal_btn_pressed"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/BowBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_bow_btn_pressed"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/ArrowBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_arrow_btn_pressed"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/SwordBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_sword_btn_pressed"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/MaxHPBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_max_hp_btn_pressed"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/AtkDmgBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_atk_dmg_btn_pressed"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/BlessingsBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_blessings_btn_pressed"]
+[connection signal="pressed" from="Goblin/CanvasLayer/VBoxContainer/BackBtn" to="Goblin/CanvasLayer/VBoxContainer" method="_on_back_btn_pressed"]
 [connection signal="animation_finished" from="player/AnimationPlayer" to="player" method="_on_animation_player_animation_finished"]

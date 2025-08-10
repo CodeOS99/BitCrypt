@@ -35,3 +35,8 @@ func _on_credits_btn_pressed() -> void:
 func _on_quit_btn_pressed() -> void:
 	selectSoundPlayer.play()
 	get_tree().quit()
+
+func _on_options_btn_pressed() -> void:
+	selectSoundPlayer.play()
+	await selectSoundPlayer.finished
+	get_tree().change_scene_to_file("res://Scenes/credits_scene.tscn")

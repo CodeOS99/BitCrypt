@@ -26,5 +26,6 @@ func _process(delta: float) -> void:
 		$AnimationPlayer.play(facing_dir + "_" + type)
 		if type == "atk":
 			AudioPlayer.swordPlayer.play()
+			Globals.player.camera.start_shake(0.5 , 5.0, 5.0)
 	else:
 		$damager.active = true
